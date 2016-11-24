@@ -10,6 +10,7 @@ define([
     'common/modules/commercial/dfp/add-slot',
     'common/modules/commercial/commercial-features',
     'common/modules/commercial/dfp/create-slot',
+    'common/modules/commercial/user-features',
     'lodash/objects/defaults'
 ], function (
     Promise,
@@ -23,6 +24,7 @@ define([
     addSlot,
     commercialFeatures,
     createSlot,
+    userFeatures,
     defaults
 ) {
     return function (options) {
@@ -41,7 +43,9 @@ define([
         $adSlotContainer = $(opts.adSlotContainerSelector);
         $commentMainColumn = $(opts.commentMainColumn, '.js-comments');
 
-        if (!commercialFeatures.commentAdverts || !$adSlotContainer.length) {
+        if (!commercialFeatures.commentAdverts ||
+            userFeatures.isAdfree() ||
+            !$adSlotContainer.length) {
             return false;
         }
 

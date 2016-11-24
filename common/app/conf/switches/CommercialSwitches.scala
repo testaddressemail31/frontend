@@ -176,6 +176,24 @@ trait CommercialSwitches {
     exposeClientSide = false
   )
 
+  val AdFreeExperience = Switch(
+    "Commercial",
+    "advert-opt-out",
+    "Enable adfree experience. See with cookie 'gu_adfree_user' = true",
+    safeState = Off,
+    sellByDate = new LocalDate(2016, 2, 8),
+    exposeClientSide = true
+  )
+
+  val NewCommercialContent = Switch(
+    "Commercial",
+    "new-commercial-content",
+    "New commercial content designs",
+    safeState = Off,
+    sellByDate = new LocalDate(2016, 12, 21),
+    exposeClientSide = false
+  )
+
   val showChesterZooArticles = Switch(
     group = CommercialLabs,
     "chester-zoo-articles",

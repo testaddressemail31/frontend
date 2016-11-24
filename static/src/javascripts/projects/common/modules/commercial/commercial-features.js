@@ -58,6 +58,7 @@ define([
 
         this.topBannerAd =
             this.dfpAdvertising &&
+            !userFeatures.isAdfree() &&
             !isMinuteArticle;
 
         this.galleryAdverts =
@@ -66,6 +67,7 @@ define([
 
         this.articleBodyAdverts =
             this.dfpAdvertising &&
+            !userFeatures.isAdfree() &&
             !isMinuteArticle &&
             isArticle &&
             !isLiveBlog &&
@@ -74,6 +76,7 @@ define([
 
         this.articleAsideAdverts =
             this.dfpAdvertising &&
+            !userFeatures.isAdfree() &&
             !isMinuteArticle &&
             !isMatchReport &&
             !!(isArticle || isLiveBlog) &&
@@ -81,15 +84,18 @@ define([
 
         this.sliceAdverts =
             this.dfpAdvertising &&
+            !userFeatures.isAdfree() &&
             !isMinuteArticle &&
             switches.commercial;
 
         this.popularContentMPU =
             this.dfpAdvertising &&
+            !userFeatures.isAdfree() &&
             !isMinuteArticle;
 
         this.videoPreRolls =
             externalAdvertising &&
+            !userFeatures.isAdfree() &&
             !sensitiveContent &&
             switches.commercial;
 
