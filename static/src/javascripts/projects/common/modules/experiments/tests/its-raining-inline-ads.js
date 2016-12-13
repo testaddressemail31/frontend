@@ -4,7 +4,7 @@ define([
     commercialFeatures
 ) {
     return function () {
-        this.id = 'ItsRainingInlineAds';
+        this.id = 'CommercialItsRainingInlineAds';
         this.start = '2016-12-06';
         this.expiry = '2016-12-19';
         this.author = 'Regis Kuckaertz';

@@ -7,7 +7,7 @@ trait ABTestSwitches {
 
   Switch(
     ABTests,
-    "ab-its-raining-inline-ads",
+    "ab-commercial-its-raining-inline-ads",
     "Display more inline ads on the wide breakpoint",
     owners = Seq(Owner.withGithub("regiskuckaertz")),
     safeState = Off,
