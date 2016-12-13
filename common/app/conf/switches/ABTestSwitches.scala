@@ -11,7 +11,7 @@ trait ABTestSwitches {
     "Display more inline ads on the wide breakpoint",
     owners = Seq(Owner.withGithub("regiskuckaertz")),
     safeState = Off,
-    sellByDate = new LocalDate(2016, 12, 20),
+    sellByDate = new LocalDate(2016, 12, 23),
     exposeClientSide = true
   )
 
