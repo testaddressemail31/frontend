@@ -36,22 +36,39 @@ case class Blocks(
   requestedBodyBlocks: Map[String, Seq[BodyBlock]]
 )
 
+object MainBlockMaker {
+  def apply(blocks: Option[ApiBlocks]): Option[BodyBlock] = {
+     val main: Option[Block] = blocks.flatMap(_.main)
+     main.map(BlockMaker(_))
+  }
+
+}
+
+object BlockMaker {
+
+  def apply(block: Block): BodyBlock = {
+    BodyBlock(block.id,
+      block.bodyHtml,
+      block.bodyTextSummary,
+      block.title,
+      BlockAttributes.make(block.attributes),
+      block.published,
+      block.createdDate.map(_.toJodaDateTime),
+      block.firstPublishedDate.map(_.toJodaDateTime),
+      block.publishedDate.map(_.toJodaDateTime),
+      block.lastModifiedDate.map(_.toJodaDateTime),
+      block.contributors,
+      block.elements.flatMap(BlockElement.make))
+  }
+
+
+}
+
 object BodyBlock {
 
   def make(blocks: Seq[Block]): Seq[BodyBlock] =
     blocks.map { bodyBlock =>
-        BodyBlock(bodyBlock.id,
-          bodyBlock.bodyHtml,
-          bodyBlock.bodyTextSummary,
-          bodyBlock.title,
-          BlockAttributes.make(bodyBlock.attributes),
-          bodyBlock.published,
-          bodyBlock.createdDate.map(_.toJodaDateTime),
-          bodyBlock.firstPublishedDate.map(_.toJodaDateTime),
-          bodyBlock.publishedDate.map(_.toJodaDateTime),
-          bodyBlock.lastModifiedDate.map(_.toJodaDateTime),
-          bodyBlock.contributors,
-          bodyBlock.elements.flatMap(BlockElement.make))
+        BlockMaker(bodyBlock)
       }
 
   sealed trait EventType
