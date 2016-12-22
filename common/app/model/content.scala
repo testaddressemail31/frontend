@@ -13,6 +13,7 @@ import conf.switches.Switches._
 import cricketPa.CricketTeams
 import layout.ContentWidths.GalleryMedia
 import model.content.{Atoms, MediaAtom, Quiz}
+import model.liveblog.{BodyBlock, MainBlockMaker}
 import model.pressed._
 import org.jsoup.Jsoup
 import org.jsoup.safety.Whitelist
@@ -65,7 +66,8 @@ final case class Content(
   showByline: Boolean,
   hasStoryPackage: Boolean,
   rawOpenGraphImage: String,
-  showFooterContainers: Boolean = false
+  showFooterContainers: Boolean = false,
+  mainBlock: Option[BodyBlock]
 ) {
 
   lazy val isBlog: Boolean = tags.blogs.nonEmpty
@@ -385,7 +387,8 @@ object Content {
           .orElse(elements.mainPicture.flatMap(_.images.largestImageUrl))
           .orElse(trail.trailPicture.flatMap(_.largestImageUrl))
           .getOrElse(Configuration.images.fallbackLogo)
-      }
+      },
+      mainBlock = MainBlockMaker(apiContent.blocks)
     )
   }
 }

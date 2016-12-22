@@ -224,7 +224,8 @@ object ContentTypeFormat {
     hasStoryPackage: Boolean,
     rawOpenGraphImage: String,
     showFooterContainers: Boolean,
-    atoms: Option[Atoms])
+    atoms: Option[Atoms],
+    mainBlock: Option[BodyBlock])
 
   private case class JsonCommercial(
     isInappropriateForSponsorship: Boolean,
@@ -248,14 +249,15 @@ object ContentTypeFormat {
     val contentJson: Reads[JsonContent] = Json.reads[JsonContent]
 
     // Combine a Builder[Reads] with a function that can create Content to make a Reads[Content].
-    (contentJson and commercialJsonFormat and trailJsonFormat and elementsFormat and metadataFormat and fieldsFormat and tagsFormat) {
+    (contentJson and commercialJsonFormat and trailJsonFormat and elementsFormat and metadataFormat and fieldsFormat and tagsFormat and bodyBlockFormat) {
       (jsonContent: JsonContent,
        jsonCommercial: JsonCommercial,
        jsonTrail: JsonTrail,
        elements: Elements,
        metadata: MetaData,
        fields: Fields,
-       tags: Tags
+       tags: Tags,
+       block: BodyBlock
        ) => {
 
        val sharelinks = ShareLinks.apply(tags, fields, metadata)
@@ -297,7 +299,8 @@ object ContentTypeFormat {
         jsonContent.showByline,
         jsonContent.hasStoryPackage,
         jsonContent.rawOpenGraphImage,
-        jsonContent.showFooterContainers
+        jsonContent.showFooterContainers,
+         jsonContent.mainBlock
        )
       }
     }
@@ -305,7 +308,7 @@ object ContentTypeFormat {
 
   private val writesContent: Writes[Content] = {
 
-    (Json.writes[JsonContent] and Json.writes[JsonCommercial] and Json.writes[JsonTrail] and ElementsFormat.format and MetaDataFormat.writesMetadata and Json.writes[Fields] and Json.writes[Tags])((content: Content) => {
+    (Json.writes[JsonContent] and Json.writes[JsonCommercial] and Json.writes[JsonTrail] and ElementsFormat.format and MetaDataFormat.writesMetadata and Json.writes[Fields] and Json.writes[Tags] and Json.writes[BodyBlock])((content: Content) => {
       // Return a tuple of decomposed classes. This is a handwritten unapply method, converting
       // from the big Content class to the smaller classes.
       ( JsonContent.apply(
@@ -330,7 +333,8 @@ object ContentTypeFormat {
           content.hasStoryPackage,
           content.rawOpenGraphImage,
           content.showFooterContainers,
-          content.atoms
+          content.atoms,
+          content.mainBlock
         ),
         JsonCommercial.apply(
           content.commercial.isInappropriateForSponsorship,
@@ -350,7 +354,8 @@ object ContentTypeFormat {
         content.elements,
         content.metadata,
         content.fields,
-        content.tags
+        content.tags,
+
       )
     })
   }
