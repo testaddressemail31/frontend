@@ -194,10 +194,13 @@ object ContentTypeFormat {
   implicit val blockAttributesFormat = Json.format[BlockAttributes]
   implicit val bodyBlockFormat = Json.format[BodyBlock]
   implicit val blocksFormat = Json.format[Blocks]
+  implicit val jsonReferenceFormat = Json.format[JsonReference]
+  implicit val cardStyleFormat = CardStyleFormat
+  implicit val tweetFormat = Json.format[Tweet]
+
+
   val fieldsFormat = Json.format[Fields]
   val elementsFormat = ElementsFormat.format
-  implicit val tweetFormat = Json.format[Tweet]
-  implicit val cardStyleFormat = CardStyleFormat
   private val commercialJsonFormat = Json.format[JsonCommercial]
   private val trailJsonFormat = Json.format[JsonTrail]
 
@@ -214,17 +217,21 @@ object ContentTypeFormat {
     showInRelated: Boolean,
     cardStyle: CardStyle,
     shouldHideAdverts: Boolean,
-    witnessAssignment: Option[String],
-    isbn: Option[String],
-    imdb: Option[String],
-    paFootballTeams: Seq[String],
+    references: JsonReference,
     javascriptReferences: Seq[JsObject],
     wordCount: Int,
     showByline: Boolean,
     hasStoryPackage: Boolean,
     rawOpenGraphImage: String,
     showFooterContainers: Boolean,
-    atoms: Option[Atoms])
+    atoms: Option[Atoms],
+    mainBlock: Option[BodyBlock])
+
+  case class JsonReference(
+    witnessAssignment: Option[String],
+    isbn: Option[String],
+    imdb: Option[String],
+    paFootballTeams: Seq[String])
 
   private case class JsonCommercial(
     isInappropriateForSponsorship: Boolean,
@@ -248,9 +255,17 @@ object ContentTypeFormat {
     val contentJson: Reads[JsonContent] = Json.reads[JsonContent]
 
     // Combine a Builder[Reads] with a function that can create Content to make a Reads[Content].
-    (contentJson and commercialJsonFormat and trailJsonFormat and elementsFormat and metadataFormat and fieldsFormat and tagsFormat) {
+    (contentJson and
+      commercialJsonFormat and
+      jsonReferenceFormat and
+      trailJsonFormat and
+      elementsFormat and
+      metadataFormat and
+      fieldsFormat and
+      tagsFormat) {
       (jsonContent: JsonContent,
        jsonCommercial: JsonCommercial,
+       jsonReference: JsonReference,
        jsonTrail: JsonTrail,
        elements: Elements,
        metadata: MetaData,
@@ -275,7 +290,7 @@ object ContentTypeFormat {
         jsonTrail.isClosedForComments
        )
 
-       Content.apply(trail, metadata, tags, commercial, elements, fields, sharelinks,
+        Content.apply(trail, metadata, tags, commercial, elements, fields, sharelinks,
         jsonContent.atoms,
         jsonContent.publication,
         jsonContent.internalPageCode,
@@ -288,16 +303,17 @@ object ContentTypeFormat {
         jsonContent.showInRelated,
         jsonContent.cardStyle,
         jsonContent.shouldHideAdverts,
-        jsonContent.witnessAssignment,
-        jsonContent.isbn,
-        jsonContent.imdb,
-        jsonContent.paFootballTeams,
+        jsonContent.references.witnessAssignment,
+        jsonContent.references.isbn,
+        jsonContent.references.imdb,
+        jsonContent.references.paFootballTeams,
         jsonContent.javascriptReferences,
         jsonContent.wordCount,
         jsonContent.showByline,
         jsonContent.hasStoryPackage,
         jsonContent.rawOpenGraphImage,
-        jsonContent.showFooterContainers
+        jsonContent.showFooterContainers,
+        jsonContent.mainBlock
        )
       }
     }
@@ -305,36 +321,46 @@ object ContentTypeFormat {
 
   private val writesContent: Writes[Content] = {
 
-    (Json.writes[JsonContent] and Json.writes[JsonCommercial] and Json.writes[JsonTrail] and ElementsFormat.format and MetaDataFormat.writesMetadata and Json.writes[Fields] and Json.writes[Tags])((content: Content) => {
+
+    (Json.writes[JsonContent] and Json.writes[JsonCommercial] and Json.writes[JsonReference] and Json.writes[JsonTrail] and ElementsFormat.format and MetaDataFormat.writesMetadata and Json.writes[Fields] and Json.writes[Tags])((content: Content) => {
       // Return a tuple of decomposed classes. This is a handwritten unapply method, converting
       // from the big Content class to the smaller classes.
-      ( JsonContent.apply(
-          content.publication,
-          content.internalPageCode,
-          content.contributorBio,
-          content.starRating,
-          content.allowUserGeneratedContent,
-          content.isExpired,
-          content.productionOffice,
-          content.tweets,
-          content.showInRelated,
-          content.cardStyle,
-          content.shouldHideAdverts,
+      (JsonContent.apply(
+        content.publication,
+        content.internalPageCode,
+        content.contributorBio,
+        content.starRating,
+        content.allowUserGeneratedContent,
+        content.isExpired,
+        content.productionOffice,
+        content.tweets,
+        content.showInRelated,
+        content.cardStyle,
+        content.shouldHideAdverts,
+        JsonReference(
           content.witnessAssignment,
           content.isbn,
           content.imdb,
-          content.paFootballTeams,
-          content.javascriptReferences,
-          content.wordCount,
-          content.showByline,
-          content.hasStoryPackage,
-          content.rawOpenGraphImage,
-          content.showFooterContainers,
-          content.atoms
+          content.paFootballTeams
         ),
+        content.javascriptReferences,
+        content.wordCount,
+        content.showByline,
+        content.hasStoryPackage,
+        content.rawOpenGraphImage,
+        content.showFooterContainers,
+        content.atoms,
+        content.mainBlock
+      ),
         JsonCommercial.apply(
           content.commercial.isInappropriateForSponsorship,
           content.commercial.hasInlineMerchandise
+        ),
+        JsonReference.apply(
+          content.witnessAssignment,
+          content.isbn,
+          content.imdb,
+          content.paFootballTeams
         ),
         JsonTrail.apply(
           content.trail.webPublicationDate,
@@ -351,7 +377,7 @@ object ContentTypeFormat {
         content.metadata,
         content.fields,
         content.tags
-      )
+        )
     })
   }
 
