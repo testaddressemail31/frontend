@@ -24,7 +24,8 @@ object Blocks {
     Blocks(
       totalBodyBlocks = blocks.totalBodyBlocks.getOrElse(bodyBlocks.length),
       body = bodyBlocks,
-      requestedBodyBlocks = reqBlocks
+      requestedBodyBlocks = reqBlocks,
+      main = MainBlockMaker(blocks)
     )
   }
 
@@ -32,14 +33,14 @@ object Blocks {
 
 case class Blocks(
   totalBodyBlocks: Int,
+  main: Option[BodyBlock],
   body: Seq[BodyBlock],
   requestedBodyBlocks: Map[String, Seq[BodyBlock]]
 )
 
 object MainBlockMaker {
-  def apply(blocks: Option[ApiBlocks]): Option[BodyBlock] = {
-     val main: Option[Block] = blocks.flatMap(_.main)
-     main.map(BlockMaker(_))
+  def apply(blocks: ApiBlocks): Option[BodyBlock] = {
+        blocks.main.map(BlockMaker(_))
   }
 
 }

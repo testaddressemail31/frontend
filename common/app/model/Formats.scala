@@ -224,7 +224,8 @@ object ContentTypeFormat {
     hasStoryPackage: Boolean,
     rawOpenGraphImage: String,
     showFooterContainers: Boolean,
-    atoms: Option[Atoms])
+    atoms: Option[Atoms],
+    blocks: Option[Blocks])
 
   private case class JsonCommercial(
     isInappropriateForSponsorship: Boolean,
@@ -297,7 +298,8 @@ object ContentTypeFormat {
         jsonContent.showByline,
         jsonContent.hasStoryPackage,
         jsonContent.rawOpenGraphImage,
-        jsonContent.showFooterContainers
+        jsonContent.showFooterContainers,
+        jsonContent.blocks
        )
       }
     }
@@ -330,7 +332,8 @@ object ContentTypeFormat {
           content.hasStoryPackage,
           content.rawOpenGraphImage,
           content.showFooterContainers,
-          content.atoms
+          content.atoms,
+          content.blocks
         ),
         JsonCommercial.apply(
           content.commercial.isInappropriateForSponsorship,
