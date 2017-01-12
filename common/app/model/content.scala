@@ -34,6 +34,7 @@ sealed trait ContentType {
   final def metadata: MetaData = content.metadata
   final def commercial: Commercial = content.commercial
   final def sharelinks: ShareLinks = content.sharelinks
+  final def mainBlock = content.mainBlock
 }
 
 final case class GenericContent(override val content: Content) extends ContentType

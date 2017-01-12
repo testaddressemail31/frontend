@@ -107,6 +107,7 @@ trait FapiFrontPress extends Logging with ExecutionContexts {
       .showTags("all")
       .showReferences(QueryDefaults.references)
       .showAtoms("media")
+      .showBlocks("main")
 
   val itemApiQuery: AdjustItemQuery = (itemQuery: ItemQuery) =>
     itemQuery
@@ -116,6 +117,7 @@ trait FapiFrontPress extends Logging with ExecutionContexts {
       .showTags("all")
       .showReferences(QueryDefaults.references)
       .showAtoms("media")
+      .showBlocks("main")
 
   def generateCollectionJsonFromFapiClient(collectionId: String): Response[PressedCollection] =
     for {

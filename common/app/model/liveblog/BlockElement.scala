@@ -13,6 +13,8 @@ case class GuVideoBlockElement(assets: Seq[VideoAsset], imageMedia: ImageMedia, 
 case class VideoBlockElement(data: Map[String, String]) extends BlockElement
 case class EmbedBlockElement(html: Option[String], safe: Option[Boolean], alt: Option[String]) extends BlockElement
 case class RichLinkBlockElement(url: Option[String], text: Option[String], prefix: Option[String]) extends BlockElement
+case class ContentAtomBlockElement(atomId: Option[String], atomType: Option[String]) extends BlockElement
+
 
 object BlockElement {
 
@@ -55,6 +57,8 @@ object BlockElement {
         else Some(VideoBlockElement(videoDataFor(element)))
 
       case Embed => element.embedTypeData.map(d => EmbedBlockElement(d.html, d.safeEmbedCode, d.alt))
+
+      case Contentatom => Some(ContentAtomBlockElement(element.contentAtomTypeData.map(_.atomId), element.contentAtomTypeData.map(_.atomType)))
 
       case _ => None
     }

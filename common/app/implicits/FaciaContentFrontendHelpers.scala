@@ -5,6 +5,7 @@ import common.commercial.PaidContent
 import implicits.Dates._
 import model._
 import model.content.MediaAtom
+import model.liveblog.ContentAtomBlockElement
 import model.pressed._
 import org.joda.time.DateTime
 import org.jsoup.Jsoup
@@ -26,17 +27,16 @@ object FaciaContentFrontendHelpers {
 
     def mainVideoAtom: Option[MediaAtom] =
       for {
-       main <- faciaContent.properties.maybeContent.map(_.fields.main)
-       atoms <-  faciaContent.properties.maybeContent.flatMap(_.atoms)
-       document <- Some(Jsoup.parse(main))
-       atomContainer <- Some(document.getElementsByClass("element-atom").first())
-       bodyElement <- Some(atomContainer.getElementsByTag("gu-atom"))
-       atomId <- Some(bodyElement.attr("data-atom-id"))
-       mainMediaAtom <- atoms.media.find(_.id == atomId)
-     } yield mainMediaAtom
+        main <- faciaContent.properties.maybeContent.flatMap(_.mainBlock)
+        contentAtomBlockElement <- main.elements.collect { case c: ContentAtomBlockElement => c }.headOption
+        atomId <- contentAtomBlockElement.atomId
+        atoms <- faciaContent.properties.maybeContent.flatMap(_.atoms)
+        mediaAtom <- atoms.media.find(_.id == atomId)
+        firstAsset <- mediaAtom.assets.headOption
+        youTubeAtom <- if (firstAsset.platform == "Youtube") Some(mediaAtom) else None
+      } yield youTubeAtom
 
-
-    def mainVideo: Option[VideoElement] = {
+      def mainVideo: Option[VideoElement] = {
       val elements: Seq[Element] = faciaContent.properties.maybeContent.map(_.elements.elements).getOrElse(Nil)
       val videos: Seq[VideoElement] = elements.flatMap {
         case video: VideoElement => Some(video)
