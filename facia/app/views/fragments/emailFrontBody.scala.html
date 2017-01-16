@@ -1,3 +1,4 @@
+@import views.support.CutOut
 @(page: model.PressedPage)(implicit request: RequestHeader)
 
 @import implicits.ItemKickerImplicits._
@@ -40,9 +41,16 @@
     @fullRow(Seq("facia-card__text")) {
         @headline(card)
     }
-    @fullRow(Seq("facia-card__text", "facia-card__text--last")) {
-        @card.trailText.map { trailText =>
-            <h4 class="trail-text">@Html(trailText)</h4>
+    @fullRowWithSubColumns() {
+        @subColumn(9, Seq("facia-card__text")) {
+            @card.trailText.map { trailText =>
+                <h4 class="trail-text">@Html(trailText)</h4>
+            }
+        }
+        @subColumn(3, Seq("facia-card__text"), last = true) {
+            @card.cutOut.map { case CutOut(imageUrl, _) =>
+                @imgForFront(imageUrl, None)
+            }
         }
     }
 }
@@ -52,7 +60,7 @@
         <a @Html(card.header.url.hrefWithRel) class="facia-link">
             <div class="facia-card @if(withImage){facia-card--large}">
                 @if(withImage) { @imgFromCard(card) }
-                @if(card.header.quoted) {
+                @if(card.cutOut.isDefined) {
                     @headlineAndTrailWithCutout(card)
                 } else {
                     @fullRow(Seq("facia-card__text", "facia-card__text--last")) {
