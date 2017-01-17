@@ -119,10 +119,10 @@ object NewNavigation {
   case object News extends EditionalisedNavigationSection {
     val name = "news"
 
-    val uk = List(headlines, ukNews, world, politics, environment, business, tech, science, money)
-    val au = List(headlines, australiaNews, world, auPolitics, environment, economy, auImmigration, indigenousAustralia, media, tech)
-    val us = List(headlines, usNews, usPolitics, world, environment, business, tech, science, money)
-    val int = List(headlines, world, ukNews, environment, business, tech, science, cities, globalDevelopment)
+    val uk = List(headlines, ukNews, world, politics, science, business, tech, environment, money)
+    val au = List(headlines, australiaNews, world, auPolitics, auImmigration, indigenousAustralia, economy, tech, environment, media)
+    val us = List(headlines, usNews, world, science, usPolitics, business, environment, money, tech)
+    val int = List(headlines, world, ukNews, science, cities, globalDevelopment, tech, business, environment)
   }
 
   case object Opinion extends EditionalisedNavigationSection {
@@ -171,28 +171,28 @@ object NewNavigation {
   case object Sport extends EditionalisedNavigationSection {
     val name = "sport"
 
-    val uk = List(sport, football, cricket, rugbyUnion, formulaOne, tennis, golf, cycling, boxing, racing , rugbyLeague, usSports)
-    val au = List(sport, football, australiaSport, AFL, NRL, aLeague, cricket, rugbyUnion, tennis, cycling)
-    val us = List(sport, soccer, NFL, MLS, MLB, NBA, NHL, tennis)
-    val int = List(sport, football, cricket, rugbyUnion, formulaOne, tennis, golf, cycling, boxing, usSports)
+    val uk = List(sport, football, rugbyUnion, cricket, tennis, cycling, formulaOne, boxing, rugbyLeague, racing, usSports, golf)
+    val au = List(sport, football, rugbyUnion, cricket, AFL, tennis, cycling, aLeague, NRL, australiaSport, sport)
+    val us = List(sport, soccer, NFL, tennis, MLB, MLS, NBA, NHL)
+    val int = List(sport, football, rugbyUnion, cricket, tennis, formulaOne, cycling, golf, boxing, usSports)
   }
 
   case object Arts extends EditionalisedNavigationSection {
     val name = "arts"
 
-    val uk = List(culture, film, tvAndRadio, music, games, books, artAndDesign, stage, classical)
-    val au = List(culture, film, music, classical, books, stage, artAndDesign, games)
-    val us = List(culture, film, tvAndRadio, music, artAndDesign, books, stage, classical, games)
-    val int = uk
+    val uk = List(culture, tvAndRadio, music, books, games, artAndDesign, film, stage, classical, culture)
+    val au = List(culture, books, music, artAndDesign, film, games, stage, classical, culture)
+    val us = List(culture, books, music, artAndDesign, tvAndRadio, stage, classical, film, games)
+    val int = List(culture, books, music, tvAndRadio, artAndDesign, film, games, classical, stage)
   }
 
   case object Life extends EditionalisedNavigationSection {
     val name = "life"
 
-    val uk = List(lifestyle, fashion, food, travel, loveAndSex, family, home, health, women, tech)
-    val au = List(lifestyle, food, family, loveAndSex, health, home, women, travel, fashion)
-    val us = uk
-    val int = uk
+    val uk = List(lifestyle, fashion, food, loveAndSex, family, home, health, women, travel, tech)
+    val au = List(lifestyle, fashion, food, loveAndSex, health, family, women, travel, home)
+    val us = List(lifestyle, fashion, lifestyle, food, loveAndSex, home, health, women, family, travel, tech)
+    val int = List(lifestyle, fashion, lifestyle, food, loveAndSex, health, home, women, family, travel, tech)
   }
 
   case object NavFooterLinks extends EditionalisedNavigationSection {
