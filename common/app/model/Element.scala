@@ -13,9 +13,7 @@ object ElementProperties {
       isMain = capiElement.relation == "main",
       isBody = capiElement.relation == "body",
       isGallery = capiElement.relation == "gallery",
-      isThumbnail = capiElement.relation == "thumbnail",
-      isTweet = capiElement.`type` == ElementType.Tweet,
-      isInstagram = capiElement.`type` == ElementType.Instagram
+      isThumbnail = capiElement.relation == "thumbnail"
     )
   }
 }
@@ -25,9 +23,7 @@ final case class ElementProperties (
   isMain: Boolean,
   isBody: Boolean,
   isGallery: Boolean,
-  isThumbnail: Boolean,
-  isTweet: Boolean,
-  isInstagram: Boolean
+  isThumbnail: Boolean
 )
 
 object Element {

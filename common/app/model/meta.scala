@@ -493,7 +493,7 @@ final case class Elements(elements: Seq[Element]) {
     case _ => None
   }
 
-  lazy val embeds: Seq[EmbedElement] = elements.flatMap {
+  protected lazy val embeds: Seq[EmbedElement] = elements.flatMap {
     case embed: EmbedElement => Some(embed)
     case _ => None
   }
