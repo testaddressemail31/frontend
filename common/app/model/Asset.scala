@@ -132,6 +132,8 @@ case class AudioAsset(
   // The audio duration in seconds
   val duration: Int = fields.getOrElse("durationSeconds", "0").toInt +
     (fields.getOrElse("durationMinutes", "0").toInt * 60)
+
+  val source: String = fields.getOrElse("source", null)
 }
 
 object EmbedAsset {

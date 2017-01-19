@@ -2,6 +2,7 @@ package model
 
 import java.net.URL
 
+import com.gu.contentapi.client.model.v1.ElementType
 import com.gu.contentapi.client.model.{v1 => contentapi}
 import com.gu.facia.api.{utils => fapiutils}
 import com.gu.facia.client.models.TrailMetaData
@@ -314,6 +315,21 @@ final case class Content(
 
   val quizzes: Seq[Quiz] = atoms.map(_.quizzes).getOrElse(Nil)
   val media: Seq[MediaAtom] = atoms.map(_.media).getOrElse(Nil)
+
+  private def embedExistsWithSource(source: String): Boolean = {
+    elements.embeds.exists(_.embeds.embedAssets.exists(_.source.contains(source)))
+  }
+
+  private def audioExistsWithSource(source: String): Boolean = {
+    elements.audioAssets.exists(_.source == source)
+  }
+
+  lazy val hasTweets: Boolean = elements.elements.exists(_.properties.isTweet)
+  lazy val hasInstagram: Boolean = elements.elements.exists(_.properties.isInstagram)
+  lazy val hasSoundcloud: Boolean = audioExistsWithSource("SoundCloud")
+  lazy val hasVimeo: Boolean = embedExistsWithSource("Vimeo")
+  lazy val hasYoutube: Boolean = embedExistsWithSource("YouTube")
+
 }
 
 object Content {
