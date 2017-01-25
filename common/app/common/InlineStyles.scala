@@ -100,15 +100,7 @@ object InlineStyles {
     document.getElementsByTag("style").foldLeft((Seq.empty[CSSRule], Seq.empty[String])) { case ((inline, head), element) =>
       val source = new InputSource(new StringReader(element.html))
 
-      Try(cssParser.parseStyleSheet(source, null, null)).toOption map { sheet =>
-        val (styles, others) = seq(sheet.getCssRules).partition(isStyleRule)
-        val (inlineStyles, headStyles) = styles.flatMap(CSSRule.fromW3).flatten.partition(_.canInline)
-        val newHead = (headStyles.map(_.toString) ++ others.map(_.getCssText)).mkString("\n")
-
-        (inline ++ inlineStyles, (head :+ newHead).filter(_.nonEmpty))
-      } getOrElse {
-        (inline, head :+ element.html)
-      }
+      (inline, head :+ element.html)
     }
   }
 
