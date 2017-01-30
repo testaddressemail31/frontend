@@ -7,6 +7,7 @@ import model.Cached.{RevalidatableResult, WithoutRevalidationResult}
 import model._
 import model.facia.PressedCollection
 import model.pressed.CollectionConfig
+import org.jsoup.Jsoup
 import play.api.libs.json._
 import play.api.mvc._
 import play.twirl.api.Html
@@ -120,7 +121,9 @@ trait FaciaController extends Controller with Logging with ExecutionContexts wit
             Cached(CacheTime.Facia)(JsonFront(faciaPage))
           else if (request.isEmail || ConfigAgent.isEmailFront(path)) {
             Cached(CacheTime.Facia) {
-              RevalidatableResult.Ok(InlineStyles(views.html.frontEmail(faciaPage)))
+              val body = views.html.frontEmail(faciaPage)
+              if (request.doNotInlineStyles) RevalidatableResult.Ok(Html(Jsoup.parse(body.body).toString))
+              else RevalidatableResult.Ok(InlineStyles(body))
             }
           }
           else {

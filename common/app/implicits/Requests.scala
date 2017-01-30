@@ -27,6 +27,8 @@ trait Requests {
 
     lazy val isEmail: Boolean = r.getQueryString("format").exists(_.contains("email")) || r.path.endsWith(EMAIL_SUFFIX)
 
+    lazy val doNotInlineStyles: Boolean = r.getQueryString("no-inline").isDefined
+
     lazy val isEmailConnectedStyle: Boolean = Switches.RenderEmailConnectedStyle.isSwitchedOn && r.getQueryString("format").contains("email-connected")
 
     lazy val isModified = isJson || isRss || isEmail

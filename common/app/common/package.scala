@@ -9,6 +9,7 @@ import conf.switches.Switch
 import model.Cached.RevalidatableResult
 import model.{ApplicationContext, Cached, NoCache}
 import org.apache.commons.lang.exception.ExceptionUtils
+import org.jsoup.Jsoup
 import play.api.Logger
 import play.api.mvc.{RequestHeader, Result}
 import play.twirl.api.Html
@@ -65,8 +66,10 @@ object `package` extends implicits.Strings with implicits.Requests with play.api
     Cached(page) {
       if (request.isJson)
         JsonComponent(jsonResponse())
-      else if (request.isEmail)
-        RevalidatableResult.Ok(InlineStyles(htmlResponse()))
+      else if (request.isEmail) {
+        if (request.doNotInlineStyles) RevalidatableResult.Ok(Html(Jsoup.parse(htmlResponse().body).toString))
+        else RevalidatableResult.Ok(InlineStyles(htmlResponse()))
+      }
       else
         RevalidatableResult.Ok(htmlResponse())
     }
@@ -75,8 +78,10 @@ object `package` extends implicits.Strings with implicits.Requests with play.api
     Cached(page) {
       if (request.isJson)
         JsonComponent(page, jsonResponse())
-      else if (request.isEmail)
-        RevalidatableResult.Ok(InlineStyles(htmlResponse()))
+      else if (request.isEmail) {
+        if (request.doNotInlineStyles) RevalidatableResult.Ok(Html(Jsoup.parse(htmlResponse().body).toString))
+        else RevalidatableResult.Ok(InlineStyles(htmlResponse()))
+      }
       else
         RevalidatableResult.Ok(htmlResponse())
     }
@@ -85,8 +90,10 @@ object `package` extends implicits.Strings with implicits.Requests with play.api
     Cached(cacheTime) {
       if (request.isJson)
         JsonComponent(jsonResponse())
-      else if (request.isEmail)
-        RevalidatableResult.Ok(InlineStyles(htmlResponse()))
+      else if (request.isEmail) {
+        if (request.doNotInlineStyles) RevalidatableResult.Ok(Html(Jsoup.parse(htmlResponse().body).toString))
+        else RevalidatableResult.Ok(InlineStyles(htmlResponse()))
+      }
       else
         RevalidatableResult.Ok(htmlResponse())
     }
