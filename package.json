@@ -130,7 +130,8 @@
       "<rootDir>/static/__tests__"
     ],
     "testPathIgnorePatterns": [
-      "eslintrc"
+      "eslintrc",
+      "<rootDir>/static/test/"
     ],
     "moduleDirectories": [
       "<rootDir>/static/src/javascripts",
