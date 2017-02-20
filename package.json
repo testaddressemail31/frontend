@@ -138,22 +138,6 @@
       "<rootDir>/static/src/javascripts-legacy/projects",
       "<rootDir>/static/vendor/javascripts",
       "node_modules"
-    ],
-    "moduleNameMapper": {
-      "bonzo": "components/bonzo/bonzo",
-      "domReady": "components/domready/ready",
-      "EventEmitter": "components/eventEmitter/index",
-      "fastdom": "components/fastdom/index",
-      "fence": "components/fence/fence",
-      "^lodash(.*)$": "components/lodash-amd$1",
-      "picturefill": "projects/common/utils/picturefill",
-      "Promise": "components/when/Promise",
-      "qwery": "components/qwery/qwery",
-      "raven": "components/raven-js/raven",
-      "classnames": "components/classnames/index",
-      "reqwest": "components/reqwest/reqwest",
-      "stripe": "stripe/stripe.min",
-      "react": "react/addons"
-    }
+    ]
   }
 }
