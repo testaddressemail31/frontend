@@ -128,7 +128,7 @@
   "jest": {
     "browser": true,
     "testPathDirs": [
-      "<rootDir>/static/__tests__"
+      "<rootDir>/static"
     ],
     "testPathIgnorePatterns": [
       "eslintrc",
