@@ -27,8 +27,7 @@
                         "node": "current"
                     }
                 }]
-            ],
-            "plugins": ["transform-amd-to-commonjs"]
+            ]
         },
         "internal": {
             "presets": [
