@@ -1,27 +1,17 @@
 describe('AJAX', () => {
-    const reqwestSpy = jest.mock(() => ({
+    const ajax = require('common/utils/ajax');
+    console.log(jest.spyOn);
+    const reqwestSpy = jest.spyOn('reqwest').mockImplementation(() => ({
         then() {},
     }));
-    let ajax;
 
-    beforeEach((done) => {
-        jest.mock({
-            reqwest: reqwestSpy,
-            'common/utils/config': {
-                page: {
-                    ajaxUrl: 'http://api.nextgen.guardianapps.co.uk',
-                },
-            },
-        });
-        jest.mock(['common/utils/ajax'], () => {
-            ajax = arguments[0];
-            done();
-        });
+    beforeEach(() => {
+
     });
 
-    it('should be defined', () => {
-        expect(ajax).toBeDefined();
-    });
+    // it('should be defined', () => {
+    //     expect(ajaxSpy).toBeDefined();
+    // });
 
     it('should proxy calls to reqwest', () => {
         ajax({ url: '/endpoint.json', param: 'value' });
