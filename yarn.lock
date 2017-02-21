@@ -2317,9 +2317,9 @@ eslint-plugin-jasmine:
   version "1.8.1"
   resolved "https://registry.yarnpkg.com/eslint-plugin-jasmine/-/eslint-plugin-jasmine-1.8.1.tgz#b22d75e63d42da8d9898d13b1e40d42a6d0c2a95"
 
-eslint-plugin-jest@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-1.0.2.tgz#372f03f9beb00f908da126c22aef7262815f35e8"
+eslint-plugin-jest@^19.0.0:
+  version "19.0.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-19.0.0.tgz#edb9b278d441e330f6b50b50178b8dd807e429da"
 
 eslint-plugin-jsx-a11y@2.2.3:
   version "2.2.3"
