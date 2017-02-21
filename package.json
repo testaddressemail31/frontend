@@ -140,6 +140,11 @@
       "<rootDir>/static/src/javascripts-legacy/projects",
       "<rootDir>/static/vendor/javascripts",
       "node_modules"
-    ]
+    ],
+    "moduleNameMapper": {
+      "^lodash(.*)$": "components/lodash-amd$1",
+      "EventEmitter": "wolfy87-eventemitter",
+      "raven": "components/raven-js/raven"
+    },
   }
 }
