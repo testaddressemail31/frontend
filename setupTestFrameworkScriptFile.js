@@ -13,3 +13,12 @@ window.guardian = {
         onDetect: [],
     },
 };
+
+// Stub matchmedia
+window.matchMedia = window.matchMedia || function () {
+    return {
+        matches: false,
+        addListener() {},
+        removeListener() {},
+    };
+};
