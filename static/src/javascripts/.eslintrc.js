@@ -40,4 +40,7 @@ module.exports = {
         // live in tools/eslint-plugin-guardian-frontend
         'guardian-frontend/global-config': 2,
     },
+    env: {
+        'jest/globals': true,
+    },
 };
