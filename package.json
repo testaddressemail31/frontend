@@ -126,7 +126,7 @@
   },
   "jest": {
     "browser": true,
-    "testPathDirs": [
+    "roots": [
       "<rootDir>/static"
     ],
     "testPathIgnorePatterns": [
