@@ -40,7 +40,7 @@ define([
     mediator
 ) {
     var insertBottomOfArticle = function ($iframeEl) {
-            $iframeEl.appendTo('.js-article__body');
+            $iframeEl.prependTo('.content-footer');
         },
         isUSMinuteArticle = config.page.isMinuteArticle && config.page.keywordIds.indexOf('us-news/us-elections-2016') > -1,
         listConfigs = {
@@ -222,8 +222,9 @@ define([
             if (listConfig) {
                 console.log('listConfig' + listConfig);
                 listConfig.successEventName = successEventName || listConfig.successEventName || "";
-                var iframe = bonzo.create(template(iframeTemplate, listConfig))[0],
-                    $iframeEl = $(iframe);
+                var wrappedIframe = bonzo.create(template(iframeTemplate, listConfig))[0],
+                    $wrappedIframeEl = $(wrappedIframe),
+                    iframe = wrappedIframe.querySelector('iframe');
 
                 bean.on(iframe, 'load', function () {
                     email.init(iframe);
@@ -235,10 +236,10 @@ define([
 
                 if (listConfig.insertMethod) {
                     fastdom.write(function () {
-                        listConfig.insertMethod($iframeEl);
+                        listConfig.insertMethod($wrappedIframeEl);
                         if (listConfig.trackingCode) {
                             require(['ophan/ng'], function (ophan) {
-                                ophan.trackComponentAttention(listConfig.trackingCode, $iframeEl[0]);
+                                ophan.trackComponentAttention(listConfig.trackingCode, $wrappedIframeEl[0]);
                             });
                         }
                         googleAnalytics.trackNonClickInteraction('rtrt | email form inline | article | ' + listConfig.listId + ' | sign-up shown');
@@ -247,7 +248,7 @@ define([
                     });
                 } else {
                     spaceFiller.fillSpace(getSpacefinderRules(), function (paras) {
-                        $iframeEl.insertBefore(paras[0]);
+                        $wrappedIframeEl.insertBefore(paras[0]);
                         googleAnalytics.trackNonClickInteraction('rtrt | email form inline | article | ' + listConfig.listId + ' | sign-up shown');
                         emailRunChecks.setEmailInserted();
                         emailRunChecks.setEmailShown(listConfig.listName);
@@ -306,7 +307,7 @@ define([
                 // First we need to check the user's email subscriptions
                 // so we don't insert the sign-up if they've already subscribed
                 emailRunChecks.getUserEmailSubscriptions().then(function () {
-                    tailorInTest();
+                    // tailorInTest();
                     //if (ab.isParticipating({id: 'TailorRecommendedEmail'})) {
                     //    switch (ab.getTestVariantId) {
                     //        case 'tailor-recommended': tailorInTest(); break;
@@ -314,7 +315,7 @@ define([
                     //        default: addListToPage(find(listConfigs, emailRunChecks.listCanRun)); break;
                     //    }
                     //} else {
-                    //    addListToPage(find(listConfigs, emailRunChecks.listCanRun));
+                       addListToPage(find(listConfigs, emailRunChecks.listCanRun));
                     //}
                 }).catch(function (error) {
                     robust.log('c-email', error);

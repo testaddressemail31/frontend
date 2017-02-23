@@ -172,3 +172,107 @@ body {
         display: none;
     }
 }
+
+
+.fc-container__header {
+    @include mq($until: tablet) {
+        overflow: hidden;
+
+        .fc-container__header__title {
+            float: left;
+        }
+        .fc-container__header__description {
+            float: right;
+        }
+        .fc-container__header__title {
+            padding-right: $gs-gutter / 4;
+        }
+        .fc-container__header__description {
+            margin-top: 2px;
+            text-align: left;
+        }
+        .fc-container--tag & {
+            border-bottom: 0;
+        }
+    }
+    @include mq(tablet, $until: leftCol) {
+        .fc-container--tag & {
+            float: left;
+            clear: left;
+        }
+    }
+}
+
+.fc-container__header,
+.container__header {
+    position: relative;
+
+    .fc-container--paid-for &,
+    .fc-container[data-sponsorship] &,
+    .fc-container[data-sponsorship] .fc-container:first-child & {
+        @include mq(tablet, leftCol) {
+            float: left;
+        }
+
+        @include mq(tablet, desktop) {
+            width: 50%;
+            padding-right: $gs-gutter / 2;
+        }
+
+        @include mq(desktop, leftCol) {
+            width: 66%;
+            padding-right: $gs-gutter / 2;
+        }
+    }
+
+    @include mq(leftCol) {
+        float: left;
+        width: $left-column;
+    }
+
+    @include mq(wide) {
+        width: $left-column-wide;
+
+        .has-page-skin & {
+            width: auto;
+            float: none;
+        }
+    }
+}
+
+
+.fc-container__body,
+.container__body {
+    padding-top: $gs-baseline/2;
+    padding-bottom: $gs-baseline;
+    opacity: 1;
+    transition: opacity .25s linear; // Used to fade-in new updates
+
+    @include mq(tablet) {
+        padding-top: $gs-baseline / 4;
+    }
+
+    @include mq(leftCol) {
+        margin-left: $left-column + $gs-gutter;
+    }
+
+    @include mq(wide) {
+        margin-left: $left-column-wide + $gs-gutter;
+        width: gs-span(12);
+
+        .has-page-skin & {
+            margin-left: 0;
+            clear: left;
+        }
+    }
+
+    @include mq($until: leftCol) {
+        clear: left;
+    }
+
+    .fc-container--has-toggle & {
+        @include mq(leftCol, wide) {
+            padding-top: gs-height(1);
+        }
+    }
+}
