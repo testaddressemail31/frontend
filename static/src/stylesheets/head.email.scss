@@ -17,3 +17,7 @@
 
 @import 'module/email/_main';
 @import 'module/email/_iframe';
+
+@import 'module/facia/_container';
+@import 'module/facia/_mixins';
+@include fc-container-head-common;

@@ -222,9 +222,8 @@ define([
             if (listConfig) {
                 console.log('listConfig' + listConfig);
                 listConfig.successEventName = successEventName || listConfig.successEventName || "";
-                var wrappedIframe = bonzo.create(template(iframeTemplate, listConfig))[0],
-                    $wrappedIframeEl = $(wrappedIframe),
-                    iframe = wrappedIframe.querySelector('iframe');
+                var iframe = bonzo.create(template(iframeTemplate, listConfig))[0],
+                    $iframeEl = $(iframe);
 
                 bean.on(iframe, 'load', function () {
                     email.init(iframe);
@@ -236,10 +235,10 @@ define([
 
                 if (listConfig.insertMethod) {
                     fastdom.write(function () {
-                        listConfig.insertMethod($wrappedIframeEl);
+                        listConfig.insertMethod($iframeEl);
                         if (listConfig.trackingCode) {
                             require(['ophan/ng'], function (ophan) {
-                                ophan.trackComponentAttention(listConfig.trackingCode, $wrappedIframeEl[0]);
+                                ophan.trackComponentAttention(listConfig.trackingCode, $iframeEl[0]);
                             });
                         }
                         googleAnalytics.trackNonClickInteraction('rtrt | email form inline | article | ' + listConfig.listId + ' | sign-up shown');
@@ -248,7 +247,7 @@ define([
                     });
                 } else {
                     spaceFiller.fillSpace(getSpacefinderRules(), function (paras) {
-                        $wrappedIframeEl.insertBefore(paras[0]);
+                        $iframeEl.insertBefore(paras[0]);
                         googleAnalytics.trackNonClickInteraction('rtrt | email form inline | article | ' + listConfig.listId + ' | sign-up shown');
                         emailRunChecks.setEmailInserted();
                         emailRunChecks.setEmailShown(listConfig.listName);
