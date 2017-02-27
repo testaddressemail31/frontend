@@ -103,6 +103,7 @@ define([
             return config.page.section === 'film';
         },
         theFiver: function () {
+            return false;
             return page.keywordExists(['Football']) && allowedArticleStructure();
         },
         labNotes: function () {
@@ -118,6 +119,7 @@ define([
                 config.page.series === 'Guardian US briefing';
         },
         theGuardianToday: function () {
+            return true;
             return config.switches.emailInArticleGtoday &&
                 !pageHasBlanketBlacklist() &&
                 userReferredFromNetworkFront() &&
