@@ -131,7 +131,8 @@
     ],
     "testPathIgnorePatterns": [
       "eslintrc",
-      "<rootDir>/static/test/"
+      "<rootDir>/static/test/",
+      "<rootDir>/static/transpiled/"
     ],
     "moduleDirectories": [
       "<rootDir>/static/src/javascripts",
