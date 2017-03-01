@@ -1,5 +1,5 @@
-import ajax from './ajax';
 import reqwestSpy from 'reqwest'; // This is mocked
+import ajax from './ajax';
 
 jest.mock('reqwest', () => jest.fn(() => ({
     then: () => {},
