@@ -144,7 +144,8 @@
     "moduleNameMapper": {
       "^lodash(.*)$": "components/lodash-amd$1",
       "EventEmitter": "wolfy87-eventemitter",
-      "raven": "components/raven-js/raven"
+      "raven": "components/raven-js/raven",
+      "reqwest": "static/vendor/javascripts/components/reqwest/reqwest"
     },
     "setupTestFrameworkScriptFile": "<rootDir>/setupTestFrameworkScriptFile.js"
   }
