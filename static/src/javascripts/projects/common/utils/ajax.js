@@ -6,7 +6,7 @@ import raven from '../../../../javascripts-legacy/projects/common/utils/raven';
 let ajaxHost = config.page.ajaxUrl || '';
 
 function ajax(params) {
-    const reqParams = { ...params };
+    const reqParams = Object.assign({}, params);
 
     if (!reqParams.url.match('^(https?:)?//')) {
         reqParams.url = ajaxHost + reqParams.url;
