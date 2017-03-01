@@ -1,6 +1,6 @@
 import reqwest from 'reqwest';
-import config from 'common/utils/config';
-import raven from 'common/utils/raven';
+import config from '../../../../javascripts-legacy/projects/common/utils/config';
+import raven from '../../../../javascripts-legacy/projects/common/utils/raven';
     // This should no longer be used.
     // Prefer the new 'common/utils/fetch' or 'common/utils/fetch-json' library instead, which are es6 compliant.
 let ajaxHost = config.page.ajaxUrl || '';
