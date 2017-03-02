@@ -14,20 +14,24 @@ const clamp = (elem, lines, showMore) => {
     }
 
     $elem.css({
-        maxHeight: maxHeight + 'px',
-        overflow: 'hidden'
+        maxHeight: `${maxHeight}px`,
+        overflow: 'hidden',
     });
 
     $elem.after($fade);
 
     if (showMore) {
-        $showMore = bonzo(bonzo.create('<span class="clamp-fade__content u-fauxlink" role="button">Read more</span>'));
+        $showMore = bonzo(
+            bonzo.create(
+                '<span class="clamp-fade__content u-fauxlink" role="button">Read more</span>'
+            )
+        );
         $fade.append($showMore);
         bean.on($showMore[0], 'click', () => {
             $fade.remove();
             $elem.css({
                 maxHeight: 'none',
-                overflow: 'auto'
+                overflow: 'auto',
             });
         });
     }
