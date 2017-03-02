@@ -136,7 +136,6 @@
     "bootstraps/enhanced/main.js"
   ],
   "Gareth Trufitt": [
-    "projects/common/utils/clamp.js",
     "projects/common/utils/client-rects.js",
     "projects/common/utils/closest.js",
     "projects/common/utils/config.js",
