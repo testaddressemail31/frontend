@@ -37,4 +37,4 @@ const clamp = (elem, lines, showMore) => {
     }
 };
 
-export default clamp; // define
+export default clamp;
