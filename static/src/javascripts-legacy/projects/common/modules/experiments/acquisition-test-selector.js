@@ -3,7 +3,6 @@ define([
     'common/modules/commercial/acquisitions-view-log',
     'common/modules/experiments/tests/contributions-epic-brexit',
     'common/modules/experiments/tests/contributions-epic-always-ask-strategy',
-    'common/modules/experiments/tests/contributions-epic-ask-four-stagger',
     'common/modules/experiments/tests/contributions-epic-ask-four-earning',
     'common/modules/experiments/tests/contributions-epic-regulars',
     'common/modules/experiments/tests/acquisitions-epic-design-variations'
@@ -12,7 +11,6 @@ define([
     viewLog,
     brexit,
     alwaysAsk,
-    askFourStagger,
     askFourEarning,
     regulars,
     acquisitionsEpicDesignVariations
@@ -25,8 +23,7 @@ define([
 		regulars,
         acquisitionsEpicDesignVariations,
         askFourEarning,
-        brexit,
-        askFourStagger
+        brexit
     ];
 
     return {

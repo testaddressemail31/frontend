@@ -13,15 +13,10 @@ define([
         name: 'ContributionsEpicBrexit',
         variants: ['control']
     };
-    var ContributionsEpicAskFourStagger = {
-        name: 'ContributionsEpicAskFourStagger',
-        variants: ['control', 'stagger_one_day', 'stagger_three_days']
-    };
     var ContributionsEpicAskFourEarning = {
         name: 'ContributionsEpicAskFourEarning',
         variants: ['control']
     };
-
     var ContributionsEpicRegulars = {
         name: 'ContributionsEpicRegulars',
         variants: ['control', 'fairness_mild', 'fairness_strong', 'fairness_strong_alternate_hook', 'reliance']
@@ -30,11 +25,9 @@ define([
         name: 'AcquisitionsDesignVariations',
         variants: ['control', 'extra_paragraph', 'large_hook', 'subtle', 'prominent', 'highlight']
     };
-
     var contributionsTests = [
         ContributionsEpicAlwaysAskStrategy,
         ContributionsEpicBrexit,
-        ContributionsEpicAskFourStagger,
         ContributionsEpicAskFourEarning,
         ContributionsEpicRegulars,
         AcquisitionsEpicDesignVariations
