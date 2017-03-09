@@ -233,7 +233,7 @@ Hence why a greater depth of selector specificity is needed.
 
     @include mq(desktop) {
         .tabs__pane {
-            min-width: gs-span(8);
+            width: gs-span(8);
             min-height: 300px;
         }
 
@@ -246,6 +246,7 @@ Hence why a greater depth of selector specificity is needed.
 
 .fc-slice__popular-mpu {
     width: $mpu-original-width + 20px;
+    height: $mpu-original-height + $mpu-ad-label-height;
     margin: 0 auto;
 
     .ad-slot {
@@ -253,7 +254,7 @@ Hence why a greater depth of selector specificity is needed.
     }
 
     @include mq(desktop) {
-        width: auto;
+        width: $mpu-original-width + 20px;
         margin-left: auto;
 
         .ad-slot {
