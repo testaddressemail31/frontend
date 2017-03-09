@@ -258,8 +258,8 @@
     max-width: $mpu-original-width;
     margin: 0;
 
-    @include mq(tablet) {
-      margin: 0 auto;
+    @include mq($until: tablet) {
+      display: none;
     }
 
     .ad-slot--container-inline {
@@ -272,9 +272,17 @@
   }
 
   .fc-container__mpu--mobile & {
-    @include mq(mobile) {
-      background-color: #ffd312;
+    background-color: #ffd312;
+    margin: 0 auto;
+
+    @include mq(tablet) {
+      min-height: 0;
     }
+  }
+
+  .fc-container--commercial & {
+    background-color: #ED4C4C;
+    min-height: 0;
   }
 }
 
