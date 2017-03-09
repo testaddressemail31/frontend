@@ -1,0 +1,32 @@
+.report-me{
+    position:absolute;
+    top: 0;
+    right: -20px;
+    opacity: 0;
+    cursor: pointer;
+}
+p{
+    position: relative;
+}
+p:hover > .report-me {
+    opacity: 0.5;
+}
+p > .report-me:hover {
+    opacity: 1;
+}
+.report-me--form {
+    background: $guardian-brand-dark;
+    color:white;
+    font-weight:900;
+    padding: 12px 12px 12px 6px;
+    border-left: 6px solid $guardian-brand-light;
+}
+.report-me--form textarea{
+    color: black;
+    resize: none;
+    width: 100%;
+    font-weight: 500;
+}
+.report-me--form__button {
+    right:0;
+}

@@ -31,5 +31,6 @@ define([
     'common/modules/ui/toggles',
     'common/modules/ui/rhc',
     'common/modules/user-prefs',
-    'common/views/svgs'
+    'common/views/svgs',
+    'common/modules/report-me'
 ], function () {});

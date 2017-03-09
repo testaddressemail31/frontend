@@ -196,5 +196,14 @@ define([
         robust.catchErrorsAndLog('ga-user-timing-enhanced-end', function () {
             ga.trackPerformance('Javascript Load', 'enhancedEnd', 'Enhanced end parse time');
         });
+
+
+
+
+
+
+        require.ensure([], function (require) {
+            bootstrapContext('report-me', require('bootstraps/report-me'));
+        }, 'report-me');
     };
 });
