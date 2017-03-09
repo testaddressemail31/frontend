@@ -31,15 +31,15 @@ class CommercialTest extends FlatSpec with Matchers with OptionValues with Befor
   // experiment in the near future:
   // "topAboveNavSlot css classes" should
   //   "be large for 900x250 or 970x250 ad on UK business front" in {
-  //   topAboveNavSlot.cssClasses(metaDataFromId("uk/business"), defaultEdition, Seq(AdSize(900, 250))) should endWith("top-banner-ad-container--large")
+  //   topAboveNavSlot.cssClasses(metaDataFromId("uk/business"), defaultEdition, Seq(AdSize(900, 250))) should endWith("top-awesome-container--large")
   // }
   //
   // they should "be small for 728x90 ad on AU business front" in {
-  //   topAboveNavSlot.cssClasses(metaDataFromId("au/business"), defaultEdition, Seq(leaderboardSize)) should endWith("top-banner-ad-container--small")
+  //   topAboveNavSlot.cssClasses(metaDataFromId("au/business"), defaultEdition, Seq(leaderboardSize)) should endWith("top-awesome-container--small")
   // }
   //
   // they should "be responsive for 88x70 ad on US business front" in {
-  //   topAboveNavSlot.cssClasses(metaDataFromId("us/business"), defaultEdition, Seq(responsiveSize)) should endWith("top-banner-ad-container--responsive")
+  //   topAboveNavSlot.cssClasses(metaDataFromId("us/business"), defaultEdition, Seq(responsiveSize)) should endWith("top-awesome-container--responsive")
   // }
 
   they should "be default for any other page" in {

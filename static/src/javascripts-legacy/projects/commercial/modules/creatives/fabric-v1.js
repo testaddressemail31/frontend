@@ -102,8 +102,8 @@ define([
             }
 
             this.$adSlot.addClass('ad-slot--fabric-v1 ad-slot--fabric content__mobile-full-width');
-            if( this.$adSlot.parent().hasClass('top-banner-ad-container') ) {
-                this.$adSlot.parent().addClass('top-banner-ad-container--fabric');
+            if( this.$adSlot.parent().hasClass('top-awesome-container') ) {
+                this.$adSlot.parent().addClass('top-awesome-container--fabric');
             }
 
             if (this.params.viewabilityTracker) {

@@ -7,7 +7,7 @@ define([
 
         var ukBanners;
         beforeEach(function () {
-            document.innerHtml = '<div class="top-banner-ad-container--desktop"></div>';
+            document.innerHtml = '<div class="top-awesome-container--desktop"></div>';
             ukBanners = adblockBannerConfig.getBanners('UK');
         });
 

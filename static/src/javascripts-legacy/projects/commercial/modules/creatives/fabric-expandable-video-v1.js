@@ -105,8 +105,8 @@ define([
                 addViewabilityTracker(this.$adSlot[0], this.params.id, this.params.viewabilityTracker);
             }
             this.$adSlot.addClass('ad-slot--fabric');
-            if( this.$adSlot.parent().hasClass('top-banner-ad-container') ) {
-                this.$adSlot.parent().addClass('top-banner-ad-container--fabric');
+            if( this.$adSlot.parent().hasClass('top-awesome-container') ) {
+                this.$adSlot.parent().addClass('top-awesome-container--fabric');
             }
             return true;
         }, this);

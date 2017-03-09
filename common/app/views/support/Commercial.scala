@@ -94,11 +94,11 @@ object Commercial {
     // The sizesOverride parameter is for testing only.
     def cssClasses(metadata: model.MetaData): String = {
       val topBannerDisableSticky = metadata.javascriptConfigOverrides.get("disableStickyTopBanner") match {
-        case Some(JsBoolean(true)) => Some("top-banner-ad-container--not-sticky")
+        case Some(JsBoolean(true)) => Some("top-awesome-container--not-sticky")
         case _                     => None
       }
       val classes = Seq(
-        "top-banner-ad-container",
+        "top-awesome-container",
         "js-top-banner"
       ) ++ topBannerDisableSticky
 

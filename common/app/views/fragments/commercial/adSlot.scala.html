@@ -9,7 +9,8 @@
     optClassNames: Option[String] = None
 )(placeholderContent: Html)
 
-<div
+<div class="awesome__placeholder">
+  <div
     id="dfp-ad--@optId.getOrElse(name)"
     class="js-ad-slot ad-slot ad-slot--@name @adTypes.map{ adType =>ad-slot--@adType}.mkString(" ") @optClassNames"
     data-link-name="ad slot @name"
@@ -20,4 +21,6 @@
     @sizeMapping.map{ case(breakpoint, sizes) =>
         data-@breakpoint="@sizes.mkString("|")"
     }
-    >@placeholderContent</div>
+    >@placeholderContent
+  </div>
+</div>

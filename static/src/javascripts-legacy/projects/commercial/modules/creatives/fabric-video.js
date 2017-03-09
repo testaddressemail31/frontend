@@ -52,8 +52,8 @@ define([
                     addViewabilityTracker(adSlot, params.id, params.viewabilityTracker);
                 }
                 adSlot.classList.add('ad-slot--fabric');
-                if( adSlot.parentNode.classList.contains('top-banner-ad-container') ) {
-                    adSlot.parentNode.classList.add('top-banner-ad-container--fabric');
+                if( adSlot.parentNode.classList.contains('top-awesome-container') ) {
+                    adSlot.parentNode.classList.add('top-awesome-container--fabric');
                 }
             }).then(function () {
                 layer2 = qwery('.creative__layer2', adSlot);

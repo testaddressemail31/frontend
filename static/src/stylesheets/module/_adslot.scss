@@ -67,18 +67,18 @@
  * Banner ads
  */
 
-.top-banner-ad-container {
+.top-awesome-container {
     background-color: $neutral-8;
     // Needed for compatibility with IE11/Edge.
     top: 0;
 
-    &:not(.top-banner-ad-container--not-sticky) {
+    &:not(.top-awesome-container--not-sticky) {
         position: sticky;
         z-index: $zindex-sticky;
     }
 }
 
-.top-banner-ad-container--fabric {
+.top-awesome-container--fabric {
     overflow: hidden;
 }
 
