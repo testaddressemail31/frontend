@@ -245,20 +245,26 @@ Hence why a greater depth of selector specificity is needed.
 }
 
 .fc-slice__popular-mpu {
-    width: $mpu-original-width + 20px;
+    background-color: #69d1ca;
+    width: $mpu-original-width;
     height: $mpu-original-height + $mpu-ad-label-height;
     margin: 0 auto;
+    padding-left: 0;
 
     .ad-slot {
         min-height: $mpu-original-height + $mpu-ad-label-height;
     }
 
     @include mq(desktop) {
-        width: $mpu-original-width + 20px;
-        margin-left: auto;
+        width: $mpu-original-width;
+        margin-left: $gs-gutter;
 
         .ad-slot {
             margin: 0;
+        }
+
+        .popular-trails__mpu & {
+          margin-left: 0;
         }
 
         .has-no-flex & {

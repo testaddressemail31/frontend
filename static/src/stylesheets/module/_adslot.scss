@@ -186,6 +186,8 @@
 /**
  * Inline ads
  */
+
+.awesome__placeholder,
 .ad-slot--inline,
 .ad-slot--container-inline,
 .ad-slot--gallery-inline,
@@ -231,6 +233,51 @@
         }
     }
 }
+
+.top-awesome-container {
+  // min-height: 90px;
+}
+
+.awesome__placeholder {
+  margin: 0;
+
+  .top-awesome-container & {
+    background-color: #69d1ca;
+    width: 100%;
+    min-width: 0;
+    min-height: 90px !important;
+    padding: 0;
+
+    .ad-slot--top-above-nav {
+      padding-bottom: 0;
+    }
+  }
+
+  .fc-slice__item--mpu-candidate & {
+    background-color: #69d1ff;
+    max-width: $mpu-original-width;
+    margin: 0;
+
+    @include mq(tablet) {
+      margin: 0 auto;
+    }
+
+    .ad-slot--container-inline {
+      margin: 0;
+    }
+  }
+
+  .popular-trails__mpu & {
+    margin: 0;
+  }
+
+  .fc-container__mpu--mobile & {
+    @include mq(mobile) {
+      background-color: #ffd312;
+    }
+  }
+}
+
 .ad-slot--inline,
 .ad-slot--container-inline {
     background-color: $neutral-8;
@@ -239,6 +286,7 @@
         width: 300px;
     }
 }
+
 .ad-slot--inline {
     @include mq(tablet) {
         float: right;
