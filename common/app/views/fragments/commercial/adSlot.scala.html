@@ -9,7 +9,7 @@
     optClassNames: Option[String] = None
 )(placeholderContent: Html)
 
-<div class="awesome__placeholder">
+<div class="awesome__placeholder js-awesome-slot">
   <div
     id="dfp-ad--@optId.getOrElse(name)"
     class="js-ad-slot ad-slot ad-slot--@name @adTypes.map{ adType =>ad-slot--@adType}.mkString(" ") @optClassNames"

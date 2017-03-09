@@ -284,6 +284,10 @@
     background-color: #ED4C4C;
     min-height: 0;
   }
+
+  .fc-slice__item & {
+    margin-left: 12px;
+  }
 }
 
 .ad-slot--inline,
