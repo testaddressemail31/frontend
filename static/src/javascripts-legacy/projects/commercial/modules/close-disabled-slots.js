@@ -15,7 +15,7 @@ define([
 
     var contributeButton = '<a class="contributions__option-button contributions__contribute contributions__option-button--visual__cta"href="https://contribute.theguardian.com?INTCMP=awesome_banner"><span class="text">Make a Contribution</span></a></div></div>';
 
-    var template = supporterText + supportButton + contributeButton;
+    var TEMPLATE = supporterText + supportButton + contributeButton;
 
     return {
         init: init
@@ -25,11 +25,13 @@ define([
 
         // Get all ad slots
         var adSlots = qwery(adSlotSelector);
+        var hiddenSlots = qwery(adSlotSelector);
         var awesomeSlots = qwery(awesomeSlotSelector);
 
         if (!force) {
             // remove the ones which should not be there
             adSlots = adSlots.filter(shouldDisableAdSlot);
+            hiddenSlots = hiddenSlots.filter(hasHiddenArticleSlot);
         }
 
         return fastdom.write(function () {
@@ -39,9 +41,16 @@ define([
 
             awesomeSlots.forEach(function (awesomeSlot) {
               if (hasHiddenSlot(awesomeSlot)) {
-                addAwesome(awesomeSlot, template);
+                addAwesome(awesomeSlot);
               }
-            })
+            });
+
+            // hiddenSlots.forEach(function (hiddenSlot) {
+            //   var span = document.createElement("div");
+            //   span.classList += "awesome__placeholder";
+            //   span.innerHTML = TEMPLATE;
+            //   hiddenSlot.replaceWith(span);
+            // });
         });
     }
 
@@ -53,11 +62,14 @@ define([
       return window.getComputedStyle(awesomeSlot).height != '0px' && (!awesomeSlot.children[0] || awesomeSlot.children[0].hasAttribute('hidden'));
     }
 
-    function addAwesome(awesomeSlot, template) {
-      if (hasHiddenSlot(awesomeSlot)) {
+    function hasHiddenArticleSlot(adSlot) {
+      var isArticle = adSlot.parentNode.classList.contains('js-content-main-column');
+      return isArticle && adSlot.hasAttribute('hidden') && (adSlot.id === "dfp-ad--right");
+  }
+
+    function addAwesome(awesomeSlot) {
         var span = document.createElement("span");
-        span.innerHTML = template;
+        span.innerHTML = TEMPLATE;
         awesomeSlot.appendChild(span);
-      }
     }
 });
