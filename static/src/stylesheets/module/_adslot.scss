@@ -239,14 +239,47 @@
 }
 
 .awesome__placeholder {
+  @include fs-header(3);
+  color: $multimedia-main-1;
   margin: 0;
 
+  .awesome-text__support {
+    margin-bottom: 12px;
+  }
+
+  .awesome-text__message,
+  .awesome-text__support {
+    margin: 6px;
+  }
+
+  .contributions__epic--visual__cta--copy {
+    padding-top: 12px;
+  }
+
+  .contributions__option-button {
+    margin: 0 12px 12px;
+    color: $multimedia-main-1;
+    background-color: $multimedia-main-2;
+
+    svg {
+      fill: #333;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: $multimedia-main-1;
+      background-color: darken($multimedia-main-2, 10%);
+    }
+  }
+
   .top-awesome-container & {
-    background-color: #69d1ca;
+    background-color: $comment-support-2;
     width: 100%;
     min-width: 0;
     min-height: 90px !important;
     padding: 0;
+    margin: 0 auto;
 
     .ad-slot--top-above-nav {
       padding-bottom: 0;
@@ -254,7 +287,7 @@
   }
 
   .fc-slice__item--mpu-candidate & {
-    background-color: #69d1ff;
+    background-color: $comment-support-2;
     max-width: $mpu-original-width;
     margin: 0;
 
@@ -272,7 +305,7 @@
   }
 
   .fc-container__mpu--mobile & {
-    background-color: #ffd312;
+    background-color: $comment-support-2;
     margin: 0 auto;
 
     @include mq(tablet) {
@@ -281,8 +314,10 @@
   }
 
   .fc-container--commercial & {
-    background-color: #ED4C4C;
+    background-color: $comment-support-2;
     min-height: 0;
+    margin: 0 auto;
+    width: 100%;
   }
 
   .fc-slice__item & {

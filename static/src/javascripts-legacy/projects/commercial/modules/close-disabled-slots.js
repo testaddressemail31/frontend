@@ -8,9 +8,14 @@ define([
     var adSlotSelector = '.js-ad-slot';
     var awesomeSlotSelector = '.js-awesome-slot';
 
-    var template = "<p>Lots of people love reading us…</p>" +
-    "<p>…but love alone doesn’t keep the lights on</p>" +
-    "<p>The love and support of our readers is vital to securing our future. Our fearless, independent journalism takes a lot of time, hard work and money to produce. And it is increasingly funded by our readers. That’s why we need you to help.</p>";
+
+    var supporterText = '<div class="contributions-wrapper"><div><p class="contributions__epic--visual__cta--copy"><span class="awesome-text__message">We notice you are using an adblocker... Can support us another way?</span></p><p><span class="awesome-text__support">For less than the price of a coffee a week, you could help secure the Guardian’s future. Support our journalism for £5 a month.</span></p>';
+
+    var supportButton = '<a class="contributions__option-button contributions__contribute contributions__option-button--visual__cta"href="https://membership.theguardian.com/supporter?INTCMP=awesome_banner"><span class="text">Become a Supporter</span></a>';
+
+    var contributeButton = '<a class="contributions__option-button contributions__contribute contributions__option-button--visual__cta"href="https://contribute.theguardian.com?INTCMP=awesome_banner"><span class="text">Make a Contribution</span></a></div></div>';
+
+    var template = supporterText + supportButton + contributeButton;
 
     return {
         init: init
