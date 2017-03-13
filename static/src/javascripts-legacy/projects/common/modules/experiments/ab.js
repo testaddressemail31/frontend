@@ -19,6 +19,7 @@ define([
     'common/modules/experiments/tests/sleeve-notes-new-email-variant',
     'common/modules/experiments/tests/sleeve-notes-legacy-email-variant',
     'common/modules/experiments/tests/increase-inline-ads',
+    'common/modules/experiments/tests/guardian-today-email-variant',
     'ophan/ng'
 ], function (reportError,
              config,
@@ -40,6 +41,7 @@ define([
              SleevenotesNewEmailVariant,
              SleevenotesLegacyEmailVariant,
              IncreaseInlineAds,
+             GuardianTodayEmailVariant,
              ophan
     ) {
     var TESTS = compact([
@@ -53,6 +55,7 @@ define([
         new TailorSurvey(),
         SleevenotesNewEmailVariant,
         SleevenotesLegacyEmailVariant,
+        GuardianTodayEmailVariant,
         new IncreaseInlineAds()
     ].concat(MembershipEngagementBannerTests));
 

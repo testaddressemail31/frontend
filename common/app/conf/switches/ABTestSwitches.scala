@@ -182,6 +182,16 @@ trait ABTestSwitches {
 
   Switch(
     ABTests,
+    "ab-guardian-today-email",
+    "Assign users to variants of guardian today uk emails",
+    owners = Seq(Owner.withGithub("davidfurey")),
+    safeState = Off,
+    sellByDate = new LocalDate(2017, 3, 31),
+    exposeClientSide = true
+  )
+
+  Switch(
+    ABTests,
     "ab-acquisitions-epic-design-variations",
     "Test design variations to the Epic",
     owners = Seq(Owner.withGithub("Mullefa")),
