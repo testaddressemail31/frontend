@@ -6,7 +6,7 @@ define([
     'common/modules/experiments/tests/contributions-epic-always-ask-strategy',
     'common/modules/experiments/tests/contributions-epic-ask-four-stagger',
     'common/modules/experiments/tests/contributions-epic-ask-four-earning',
-    'common/modules/experiments/tests/contributions-epic-regulars',
+    'common/modules/experiments/tests/contributions-epic-regulars-v2',
     'common/modules/experiments/tests/acquisitions-epic-article-50-trigger',
     'common/modules/experiments/tests/acquisitions-epic-design-variations-v2'
 ], function (
@@ -17,7 +17,7 @@ define([
     alwaysAsk,
     askFourStagger,
     askFourEarning,
-    regulars,
+    regularsV2,
     acquisitionsEpicArticle50Trigger,
     acquisitionsEpicDesignVariationsV2
 ) {
@@ -26,7 +26,7 @@ define([
      */
     var tests = [
         alwaysAsk,
-		regulars,
+		regularsV2,
         acquisitionsEpicDesignVariationsV2,
         askFourEarning,
         acquisitionsEpicArticle50Trigger,
