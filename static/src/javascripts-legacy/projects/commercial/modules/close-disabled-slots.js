@@ -25,13 +25,11 @@ define([
 
         // Get all ad slots
         var adSlots = qwery(adSlotSelector);
-        var hiddenSlots = qwery(adSlotSelector);
         var awesomeSlots = qwery(awesomeSlotSelector);
 
         if (!force) {
             // remove the ones which should not be there
             adSlots = adSlots.filter(shouldDisableAdSlot);
-            hiddenSlots = hiddenSlots.filter(hasHiddenArticleSlot);
         }
 
         return fastdom.write(function () {
@@ -44,13 +42,6 @@ define([
                 addAwesome(awesomeSlot);
               }
             });
-
-            // hiddenSlots.forEach(function (hiddenSlot) {
-            //   var span = document.createElement("div");
-            //   span.classList += "awesome__placeholder";
-            //   span.innerHTML = TEMPLATE;
-            //   hiddenSlot.replaceWith(span);
-            // });
         });
     }
 
@@ -61,11 +52,6 @@ define([
     function hasHiddenSlot(awesomeSlot) {
       return window.getComputedStyle(awesomeSlot).height != '0px' && (!awesomeSlot.children[0] || awesomeSlot.children[0].hasAttribute('hidden'));
     }
-
-    function hasHiddenArticleSlot(adSlot) {
-      var isArticle = adSlot.parentNode.classList.contains('js-content-main-column');
-      return isArticle && adSlot.hasAttribute('hidden') && (adSlot.id === "dfp-ad--right");
-  }
 
     function addAwesome(awesomeSlot) {
         var span = document.createElement("span");
