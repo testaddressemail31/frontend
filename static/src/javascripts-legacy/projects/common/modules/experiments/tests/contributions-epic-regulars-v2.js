@@ -3,13 +3,16 @@ define([
     'lodash/utilities/template',
     'lib/cookies',
     'raw-loader!common/views/contributions-epic-equal-buttons.html',
-    'common/modules/tailor/tailor'
+    'common/modules/tailor/tailor',
+    'raw-loader!common/views/acquisitions-epic-control.html'
+
 ], function (
     contributionsUtilities,
     template,
     cookies,
     contributionsEpicEqualButtons,
-    tailor
+    tailor,
+    acquisitionsEpicControlTemplate
 ) {
 
 
@@ -20,16 +23,9 @@ define([
         var suffix = regular ? '_regular' : '_non_regular';
         return function(variant) {
             function appendSuffix(code) { return code + suffix; }
-
-            return template(contributionsEpicEqualButtons, {
-                linkUrl1: variant.membershipURLBuilder(appendSuffix),
-                linkUrl2: variant.contributionsURLBuilder(appendSuffix),
-                title: 'Since you’re here …',
-                p1: '… we’ve got a small favour to ask. More people are reading the Guardian than ever, but far fewer are paying for it. Advertising revenues across the media are falling fast. And unlike some other news organisations, we haven’t put up a paywall – we want to keep our journalism open to all. So you can see why we need to ask for your help. The Guardian’s independent, investigative journalism takes a lot of time, money and hard work to produce. But we do it because we believe our perspective matters – because it might well be your perspective, too.',
-                p2: 'If everyone who reads our reporting, who likes it, helps to support it, our future would be much more secure.',
-                p3: '',
-                cta1: 'Become a Supporter',
-                cta2: 'Make a contribution'
+            return template(acquisitionsEpicControlTemplate, {
+                membershipUrl: variant.membershipURLBuilder(appendSuffix),
+                contributionUrl: variant.contributionsURLBuilder(appendSuffix)
             });
         }
     }
@@ -44,7 +40,7 @@ define([
                 linkUrl1: variant.membershipURLBuilder(appendSuffix),
                 linkUrl2: variant.contributionsURLBuilder(appendSuffix),
                 title: 'Since you’re here …',
-                p1: '… we have a small favour to ask. More people than ever are regularly reading the Guardian, but far fewer are paying for it.  Advertising revenues across the media are falling fast. And unlike many news organisations, we haven’t put up a paywall – we want to keep our journalism as open as we can. So we think it’s fair to ask people who visit us often for their help. The Guardian’s independent, investigative journalism takes a lot of time, money and hard work to produce. But we do it because we believe our perspective matters – because it might well be your perspective, too.',
+                p1: '… we have a small favour to ask. More people than ever are regularly reading the Guardian, but far fewer are paying for it.  Advertising revenues across the media are falling fast. And \<\span class=\"contributions__paragraph--highlight\"> unlike many news organisations, we haven’t put up a paywall – we want to keep our journalism as open as we can\</\span>. So we think it’s fair to ask people who visit us often for their help. The Guardian’s independent, investigative journalism takes a lot of time, money and hard work to produce. But we do it because we believe our perspective matters – because it might well be your perspective, too.',
                 p2: 'If you regularly read and value our reporting, support us now and help make our future much more secure.',
                 p3: '',
                 cta1: 'Become a Supporter',
@@ -62,7 +58,7 @@ define([
                 linkUrl1: variant.membershipURLBuilder(appendSuffix),
                 linkUrl2: variant.contributionsURLBuilder(appendSuffix),
                 title: 'Hello again …',
-                p1: '… today we have a small favour to ask. More people than ever are regularly reading the Guardian, but far fewer are paying for it.  Advertising revenues across the media are falling fast. And unlike many news organisations, we haven’t put up a paywall – we want to keep our journalism as open as we can. So we think it’s fair to ask people who visit us often for their help. The Guardian’s independent, investigative journalism takes a lot of time, money and hard work to produce. But we do it because we believe our perspective matters – because it might well be your perspective, too.',
+                p1: '… today we have a small favour to ask. More people than ever are regularly reading the Guardian, but far fewer are paying for it.  Advertising revenues across the media are falling fast. And \<\span class=\"contributions__paragraph--highlight\"> unlike many news organisations, we haven’t put up a paywall – we want to keep our journalism as open as we can\</\span>. . So we think it’s fair to ask people who visit us often for their help. The Guardian’s independent, investigative journalism takes a lot of time, money and hard work to produce. But we do it because we believe our perspective matters – because it might well be your perspective, too.',
                 p2: 'If you regularly read and value our reporting, support us now and help make our future much more secure.',
                 p3: '',
                 cta1: 'Become a Supporter',
