@@ -252,6 +252,10 @@
     margin: 6px;
   }
 
+  .contributions-wrapper {
+    background-color: $comment-support-2;
+  }
+
   .contributions__epic--visual__cta--copy {
     padding-top: 12px;
   }
@@ -274,7 +278,6 @@
   }
 
   .top-awesome-container & {
-    background-color: $comment-support-2;
     width: 100%;
     min-width: 0;
     min-height: 90px !important;

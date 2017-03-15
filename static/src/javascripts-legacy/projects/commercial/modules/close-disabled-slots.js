@@ -9,7 +9,7 @@ define([
     var awesomeSlotSelector = '.js-awesome-slot';
 
 
-    var supporterText = '<div class="contributions-wrapper"><div><p class="contributions__epic--visual__cta--copy"><span class="awesome-text__message">We notice you are using an adblocker... Can support us another way?</span></p><p><span class="awesome-text__support">For less than the price of a coffee a week, you could help secure the Guardian’s future. Support our journalism for £5 a month.</span></p>';
+    var supporterText = '<div class="contributions-wrapper"><div><p class="contributions__epic--visual__cta--copy"><span class="awesome-text__message">We notice you are using an adblocker... Can support us another way?</span></p><p><span class="awesome-text__support">For less than the price of a coffee a week, you could help secure the Guardian’s future.</span></p>';
 
     var supportButton = '<a class="contributions__option-button contributions__contribute contributions__option-button--visual__cta"href="https://membership.theguardian.com/supporter?INTCMP=awesome_banner"><span class="text">Become a Supporter</span></a>';
 
