@@ -31,7 +31,7 @@ object EmailNewsletters {
     description = "Our editors' picks for the day's top news and commentary delivered to your inbox each morning.",
     frequency = "Every day",
     listId = 37,
-    aliases = List(0, 0),
+    aliases = List(3860, 3861),
     subheading = Some("UK"),
     signupPage = Some("/info/2015/dec/08/daily-email-uk"),
     triggerId = Some(2529)

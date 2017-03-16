@@ -14,8 +14,8 @@ define([
             signupPage: 'info/ng-interactive/2017/feb/23/sign-up-for-the-sleeve-notes-email',
             canonicalListId: 37,
             testIds: [
-                { variantId: 'GuardianToday-Control', listId: 0 },
-                { variantId: 'GuardianToday-Variant', listId: 0 }
+                { variantId: 'control', listId: 3861 },
+                { variantId: 'variant', listId: 3860 }
             ]
         }
     );
