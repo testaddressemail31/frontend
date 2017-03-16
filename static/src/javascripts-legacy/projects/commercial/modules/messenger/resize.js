@@ -4,6 +4,15 @@ define([
     'lib/fastdom-promise',
     'commercial/modules/messenger'
 ], function (assign, closest, fastdom, messenger) {
+    var lengthRegexp = /^((\d+)(%|px|em|ex|ch|rem|vh|vw|vmin|vmax)?)|none|initial|inherit/;
+    var defaultUnit = 'px';
+    var properties = [
+        'width', 'height', 'padding', 'margin',
+        'paddingBottom', 'paddingTop', 'paddingLeft', 'paddingRight',
+        'marginBottom', 'marginTop', 'marginLeft', 'marginRight',
+        'maxWidth', 'maxHeight', 'minWidth', 'minHeight'
+    ];
+
     messenger.register('resize', function(specs, ret, iframe) {
         return resize(specs, iframe, closest(iframe, '.js-ad-slot'));
     });
@@ -17,13 +26,11 @@ define([
 
         var styles = {};
 
-        if (specs.width) {
-            styles.width = normalise(specs.width);
-        }
-
-        if (specs.height) {
-            styles.height = normalise(specs.height);
-        }
+        Object.keys(specs).forEach(function (prop) {
+            if (prop in properties) {
+                styles[prop] = normalise(specs[prop]);
+            }
+        });
 
         return fastdom.write(function () {
             assign(adSlot.style, styles);
@@ -32,12 +39,12 @@ define([
     }
 
     function normalise(length) {
-        var lengthRegexp = /^(\d+)(%|px|em|ex|ch|rem|vh|vw|vmin|vmax)?/;
-        var defaultUnit = 'px';
         var matches = String(length).match(lengthRegexp);
         if (!matches) {
             return null;
         }
-        return matches[1] + (matches[2] === undefined ? defaultUnit : matches[2]);
+        return matches[1] ?
+            matches[2] + (matches[3] === undefined ? defaultUnit : matches[3]) :
+            matches[0];
     }
 });
