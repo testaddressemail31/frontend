@@ -147,9 +147,7 @@ define([
             });
         });
     }
-    var counterX = 0;
     function getMediaType(player) {
-        if(!(player.tagName)){debugger;}
         return isEmbed ? 'video' : player.tagName.toLowerCase();
     }
 
@@ -157,9 +155,7 @@ define([
         return isDesktop && !history.isRevisit(config.page.pageId) && player.getAttribute('data-auto-play') === 'true';
     }
 
-    var counter = 0;
     function constructEventName(eventName, player) {
-        console.log("IN CONSTRUCT EVENT NAME " + eventName + player + counter++);
         return getMediaType(player) + ':' + eventName;
     }
 

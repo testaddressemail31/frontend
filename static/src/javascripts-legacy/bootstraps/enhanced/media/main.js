@@ -246,9 +246,7 @@ define([
                                 // preroll for videos only
                                 if (mediaType === 'video') {
                                     player.fullscreener();
-var counter = 0;
                                     if (showEndSlate && detect.isBreakpoint({ min: 'desktop' })) {
-                                        console.log("IN INIT Endlsate" + counter++);
 
                                         initEndSlate(el, player, endSlateUri);
                                     }
@@ -323,12 +321,11 @@ var counter = 0;
         endSlate.endpoint = endSlatePath;
 
         addEventListener(el, events.constructEventName('content:play', el), function () {
-    debugger;
-          //  endSlate.fetch(player.el(), 'html');
+           endSlate.fetch(player.el(), 'html');
 
-            // player.on('ended', function () {
-            //     bonzo(player.el()).addClass(endStateClass);
-            // });
+            player.on('ended', function () {
+                bonzo(player.el()).addClass(endStateClass);
+            });
         });
 
         player.on('playing', function () {
