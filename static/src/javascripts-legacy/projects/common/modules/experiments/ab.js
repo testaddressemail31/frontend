@@ -11,7 +11,6 @@ define([
     'common/modules/experiments/acquisition-test-selector',
     'common/modules/experiments/tests/editorial-email-variants',
     'common/modules/experiments/tests/opinion-email-variants',
-    'common/modules/experiments/tests/recommended-for-you',
     'common/modules/experiments/tests/membership-engagement-banner-tests',
     'common/modules/experiments/tests/paid-content-vs-outbrain',
     'common/modules/experiments/tests/membership-a3-a4-bundles-thrasher',
@@ -36,7 +35,6 @@ define([
              acquisitionTestSelector,
              EditorialEmailVariants,
              OpinionEmailVariants,
-             RecommendedForYou,
              MembershipEngagementBannerTests,
              PaidContentVsOutbrain,
              MembershipA3A4BundlesThrasher,
@@ -53,7 +51,6 @@ define([
     var TESTS = compact([
         new EditorialEmailVariants(),
         new OpinionEmailVariants(),
-        new RecommendedForYou(),
         new PaidContentVsOutbrain,
         acquisitionTestSelector.getTest(),
         new MembershipA3A4BundlesThrasher(),
