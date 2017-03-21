@@ -246,8 +246,10 @@ define([
                                 // preroll for videos only
                                 if (mediaType === 'video') {
                                     player.fullscreener();
-
+var counter = 0;
                                     if (showEndSlate && detect.isBreakpoint({ min: 'desktop' })) {
+                                        console.log("IN INIT Endlsate" + counter++);
+
                                         initEndSlate(el, player, endSlateUri);
                                     }
 
@@ -268,7 +270,7 @@ define([
                                             player.ima.requestAds();
 
                                             // Video analytics event.
-                                            player.trigger(events.constructEventName('preroll:request', player));
+                                            player.trigger(events.constructEventName('preroll:request', el));
                                             resolve();
                                         })();
                                     } else {
@@ -321,11 +323,12 @@ define([
         endSlate.endpoint = endSlatePath;
 
         addEventListener(el, events.constructEventName('content:play', el), function () {
-            endSlate.fetch(player.el(), 'html');
+    debugger;
+          //  endSlate.fetch(player.el(), 'html');
 
-            player.on('ended', function () {
-                bonzo(player.el()).addClass(endStateClass);
-            });
+            // player.on('ended', function () {
+            //     bonzo(player.el()).addClass(endStateClass);
+            // });
         });
 
         player.on('playing', function () {

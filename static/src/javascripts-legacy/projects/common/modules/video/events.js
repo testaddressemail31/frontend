@@ -147,8 +147,9 @@ define([
             });
         });
     }
-
+    var counterX = 0;
     function getMediaType(player) {
+        if(!(player.tagName)){debugger;}
         return isEmbed ? 'video' : player.tagName.toLowerCase();
     }
 
@@ -156,7 +157,9 @@ define([
         return isDesktop && !history.isRevisit(config.page.pageId) && player.getAttribute('data-auto-play') === 'true';
     }
 
+    var counter = 0;
     function constructEventName(eventName, player) {
+        console.log("IN CONSTRUCT EVENT NAME " + eventName + player + counter++);
         return getMediaType(player) + ':' + eventName;
     }
 
@@ -191,11 +194,11 @@ define([
         });
     }
 
-    function bindPrerollEvents(player) {
+    function bindPrerollEvents(player, el) {
         var events = {
             end: function () {
                 dispatchEvent(player, constructEventName('preroll:end', player));
-                bindContentEvents(player, true);
+                bindContentEvents(el, true);
             },
             start: function () {
                 var duration = player.duration();
@@ -207,7 +210,6 @@ define([
             },
             ready: function () {
                 dispatchEvent(player, constructEventName('preroll:ready', player));
-
                 addOnceEventListener(player, 'adstart', events.start);
                 addOnceEventListener(player, 'adend', events.end);
 
