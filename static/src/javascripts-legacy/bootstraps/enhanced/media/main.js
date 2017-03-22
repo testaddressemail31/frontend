@@ -315,15 +315,20 @@ define([
     }
 
     function initEndSlate(el, player, endSlatePath) {
+        console.log("IN INIT END SLATE");
+        console.log(el);
+        console.log(player);
+
         var endSlate = new Component(),
             endStateClass = 'vjs-has-ended';
 
         endSlate.endpoint = endSlatePath;
 
         addEventListener(el, events.constructEventName('content:play', el), function () {
-           endSlate.fetch(player.el(), 'html');
+           endSlate.fetch(el, 'html');
 
             player.on('ended', function () {
+                console.log("IN ADD END SLATE");
                 bonzo(player.el()).addClass(endStateClass);
             });
         });
