@@ -315,9 +315,9 @@ define([
     }
 
     function initEndSlate(el, player, endSlatePath) {
-        console.log("IN INIT END SLATE");
-        console.log(el);
-        console.log(player);
+//        console.log("IN INIT END SLATE");
+//        console.log(el);
+//        console.log(player);
 
         var endSlate = new Component(),
             endStateClass = 'vjs-has-ended';
@@ -325,7 +325,8 @@ define([
         endSlate.endpoint = endSlatePath;
 
         addEventListener(el, events.constructEventName('content:play', el), function () {
-           endSlate.fetch(el, 'html');
+            console.log("IN ADD EVENT LISTENER");
+           endSlate.fetch(el.parentElement, 'html');
 
             player.on('ended', function () {
                 console.log("IN ADD END SLATE");
