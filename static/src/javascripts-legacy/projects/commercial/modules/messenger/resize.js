@@ -27,7 +27,7 @@ define([
         var styles = {};
 
         Object.keys(specs).forEach(function (prop) {
-            if (prop in properties) {
+            if (properties.indexOf(prop) >= 0) {
                 styles[prop] = normalise(specs[prop]);
             }
         });
