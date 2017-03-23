@@ -27,7 +27,7 @@ object EmailNewsletters {
   val guardianTodayUk = EmailNewsletter(
     name = "Guardian Today",
     theme = "news",
-    teaser = "The stories you need to read, delivered to your inbox each morning",
+    teaser = "The headlines, the analysis, the debate",
     description = "Our editors' picks for the day's top news and commentary delivered to your inbox each morning.",
     frequency = "Every day",
     listId = 37,
