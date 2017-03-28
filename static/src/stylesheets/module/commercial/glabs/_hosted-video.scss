@@ -135,14 +135,15 @@
 }
 
 .youtube__video-buffering,
-.youtube__video-playing,
-.youtube__video-paused {
+.youtube__video-playing {
     ~ .hosted__youtube-poster-image {
-        // HACK! "hide" the poster image (with a 0 height) when video is playing
-        // but position static for hosted__youtube-play-button's absolute positioning to work
-        height: 0;
-        position: static;
+        // don't show poster image when video is playing
+        display: none;
     }
+}
+
+.youtube__video-paused ~ .hosted__youtube-poster-image {
+    display: block;
 }
 
 .youtube__video-ready:not(.youtube__video-started),
