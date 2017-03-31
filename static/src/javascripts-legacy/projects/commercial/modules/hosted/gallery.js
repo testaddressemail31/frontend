@@ -1,6 +1,8 @@
 define([
     'Promise',
-    'bonzo',
+    'lib/bonzo',
+    'lib/get1',
+    'lib/getn',
     'fastdom',
     'lib/$',
     'qwery',
@@ -14,6 +16,8 @@ define([
     'lib/load-css-promise'
 ], function (Promise,
              bonzo,
+             get1,
+             getn,
              fastdom,
              $,
              qwery,
@@ -36,24 +40,24 @@ define([
         this.imageRatios = [];
 
         // ELEMENT BINDINGS
-        this.$galleryEl = $('.js-hosted-gallery-container');
-        this.$galleryFrame = $('.js-hosted-gallery-frame');
-        this.$header = $('.js-hosted-headerwrap');
-        this.$imagesContainer = $('.js-hosted-gallery-images', this.$galleryEl);
-        this.$captionContainer = $('.js-gallery-caption-bar');
-        this.$captions = $('.js-hosted-gallery-caption', this.$captionContainer);
-        this.$scrollEl = $('.js-hosted-gallery-scroll-container', this.$galleryEl);
-        this.$images = $('.js-hosted-gallery-image', this.$imagesContainer);
-        this.$progress = $('.js-hosted-gallery-progress', this.$galleryEl);
-        this.$border = $('.js-hosted-gallery-rotating-border', this.$progress);
-        this.prevBtn = qwery('.inline-arrow-up', this.$progress)[0];
-        this.nextBtn = qwery('.inline-arrow-down', this.$progress)[0];
-        this.infoBtn = qwery('.js-gallery-caption-button', this.$captionContainer)[0];
-        this.$counter = $('.js-hosted-gallery-image-count', this.$progress);
-        this.$ctaFloat = $('.js-hosted-gallery-cta', this.$galleryEl)[0];
-        this.$ojFloat = $('.js-hosted-gallery-oj', this.$galleryEl)[0];
-        this.$meta = $('.js-hosted-gallery-meta', this.$galleryEl)[0];
-        this.ojClose = qwery('.js-hosted-gallery-oj-close', this.$ojFloat)[0];
+        this.$galleryEl = get1('.js-hosted-gallery-container');
+        this.$galleryFrame = getn('.js-hosted-gallery-frame');
+        this.$header = get1('.js-hosted-headerwrap');
+        this.$imagesContainer = get1('.js-hosted-gallery-images', this.$galleryEl);
+        this.$captionContainer = get1('.js-gallery-caption-bar');
+        this.$captions = getn('.js-hosted-gallery-caption', this.$captionContainer);
+        this.$scrollEl = get1('.js-hosted-gallery-scroll-container', this.$galleryEl);
+        this.$images = getn('.js-hosted-gallery-image', this.$imagesContainer);
+        this.$progress = get1('.js-hosted-gallery-progress', this.$galleryEl);
+        this.$border = get1('.js-hosted-gallery-rotating-border', this.$progress);
+        this.prevBtn = get1('.inline-arrow-up', this.$progress);
+        this.nextBtn = get1('.inline-arrow-down', this.$progress);
+        this.infoBtn = get1('.js-gallery-caption-button', this.$captionContainer);
+        this.$counter = get1('.js-hosted-gallery-image-count', this.$progress);
+        this.$ctaFloat = get1('.js-hosted-gallery-cta', this.$galleryEl);
+        this.$ojFloat = get1('.js-hosted-gallery-oj', this.$galleryEl);
+        this.$meta = get1('.js-hosted-gallery-meta', this.$galleryEl);
+        this.ojClose = get1('.js-hosted-gallery-oj-close', this.$ojFloat);
 
         if (this.$galleryEl.length) {
             this.resize = this.trigger.bind(this, 'resize');
@@ -405,11 +409,11 @@ define([
         }
         this.swipeContainerWidth = imageWidth;
         fastdom.write(function () {
-            $header.css('width', imageWidth);
-            $footer.css('margin', '0 ' + leftRight);
-            $footer.css('width', 'auto');
-            $galleryFrame.css('left', leftRight);
-            $galleryFrame.css('right', leftRight);
+            bonzo($header).css('width', imageWidth);
+            bonzo($footer).css('margin', '0 ' + leftRight);
+            bonzo($footer).css('width', 'auto');
+            bonzo($galleryFrame).css('left', leftRight);
+            bonzo($galleryFrame).css('right', leftRight);
             that.loadSurroundingImages(that.index, that.$images.length);
         });
     };

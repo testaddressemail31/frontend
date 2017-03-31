@@ -43,8 +43,29 @@ define([
             },
 
             parent: function() {
-                return bonzo(a.map(parent));
+                return bonzo(a.map(dom.parent));
+            },
+
+            insertBefore: function(s) {
+                a.forEach(dom.insertBefore.bind(null, s));
+                return o;
+            },
+
+            insertAfter: function(s) {
+                a.forEach(dom.insertAfter.bind(null, s));
+                return o;
+            },
+
+            append: function(c) {
+                a.forEach(dom.append.bind(null, c));
+                return o;
+            },
+
+            prepend: function(c) {
+                a.forEach(dom.prepend.bind(null, c));
+                return o;
             }
+
         });
 
         return o;

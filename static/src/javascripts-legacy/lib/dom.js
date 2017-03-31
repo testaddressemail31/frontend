@@ -7,7 +7,11 @@ define(function () {
         parent: parent,
         html: html,
         text: text,
-        css: css
+        css: css,
+        insertBefore: insertBefore,
+        insertAfter: insertAfter,
+        prepend: prepend,
+        append: append
     };
 
     function addClass(c, e) {
@@ -40,5 +44,21 @@ define(function () {
 
     function text(t, e) {
         e.textContent = t;
+    }
+
+    function insertBefore(s, n) {
+        n.insertAdjacentElement('beforebegin', s);
+    }
+
+    function insertAfter(s, n) {
+        n.insertAdjacentElement('afterend', s);
+    }
+
+    function append(c, n) {
+        n.insertAdjacentElement('beforeend', c);
+    }
+
+    function prepend(c, n) {
+        n.insertAdjacentElement('afterbegin', c);
     }
 });
