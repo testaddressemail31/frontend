@@ -8,10 +8,18 @@ define(function () {
         html: html,
         text: text,
         css: css,
-        insertBefore: insertBefore,
-        insertAfter: insertAfter,
+        before: before,
+        after: after,
         prepend: prepend,
-        append: append
+        append: append,
+        beforeText: beforeText,
+        afterText: afterText,
+        prependText: prependText,
+        appendText: appendText,
+        beforeHtml: beforeHtml,
+        afterHtml: afterHtml,
+        prependHtml: prependHtml,
+        appendHtml: appendHtml
     };
 
     function addClass(c, e) {
@@ -46,11 +54,11 @@ define(function () {
         e.textContent = t;
     }
 
-    function insertBefore(s, n) {
+    function before(s, n) {
         n.insertAdjacentElement('beforebegin', s);
     }
 
-    function insertAfter(s, n) {
+    function after(s, n) {
         n.insertAdjacentElement('afterend', s);
     }
 
@@ -60,5 +68,37 @@ define(function () {
 
     function prepend(c, n) {
         n.insertAdjacentElement('afterbegin', c);
+    }
+
+    function beforeText(t, n) {
+        n.insertAdjacentText('beforebegin', t);
+    }
+
+    function afterText(t, n) {
+        n.insertAdjacentText('afterend', t);
+    }
+
+    function appendText(t, n) {
+        n.insertAdjacentText('beforeend', t);
+    }
+
+    function prependText(t, n) {
+        n.insertAdjacentText('afterbegin', t);
+    }
+
+    function beforeHtml(h, n) {
+        n.insertAdjacentHTML('beforebegin', h);
+    }
+
+    function afterHtml(h, n) {
+        n.insertAdjacentHTML('afterend', h);
+    }
+
+    function appendHtml(h, n) {
+        n.insertAdjacentHTML('beforeend', h);
+    }
+
+    function prependHtml(h, n) {
+        n.insertAdjacentHTML('afterbegin', h);
     }
 });

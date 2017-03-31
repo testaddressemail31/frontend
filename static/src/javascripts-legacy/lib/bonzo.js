@@ -46,13 +46,13 @@ define([
                 return bonzo(a.map(dom.parent));
             },
 
-            insertBefore: function(s) {
-                a.forEach(dom.insertBefore.bind(null, s));
+            before: function(s) {
+                a.forEach(dom.before.bind(null, s));
                 return o;
             },
 
-            insertAfter: function(s) {
-                a.forEach(dom.insertAfter.bind(null, s));
+            after: function(s) {
+                a.forEach(dom.after.bind(null, s));
                 return o;
             },
 
@@ -64,7 +64,47 @@ define([
             prepend: function(c) {
                 a.forEach(dom.prepend.bind(null, c));
                 return o;
-            }
+            },
+
+            beforeText: function(s) {
+                a.forEach(dom.beforeText.bind(null, s));
+                return o;
+            },
+
+            afterText: function(s) {
+                a.forEach(dom.afterText.bind(null, s));
+                return o;
+            },
+
+            appendText: function(c) {
+                a.forEach(dom.appendText.bind(null, c));
+                return o;
+            },
+
+            prependText: function(c) {
+                a.forEach(dom.prependText.bind(null, c));
+                return o;
+            },
+
+            beforeHtml: function(s) {
+                a.forEach(dom.beforeHtml.bind(null, s));
+                return o;
+            },
+
+            afterHtml: function(s) {
+                a.forEach(dom.afterHtml.bind(null, s));
+                return o;
+            },
+
+            appendHtml: function(c) {
+                a.forEach(dom.appendHtml.bind(null, c));
+                return o;
+            },
+
+            prependHtml: function(c) {
+                a.forEach(dom.prependHtml.bind(null, c));
+                return o;
+            },
 
         });
 
