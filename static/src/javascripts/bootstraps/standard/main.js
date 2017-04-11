@@ -15,7 +15,7 @@
    For this file, performance and breadth of support should take priority over *anything* …
 */
 
-import fastdom from 'fastdom';
+import fastdom from 'lib/fastdom-promise';
 import raven from 'lib/raven';
 import userPrefs from 'common/modules/user-prefs';
 import images from 'common/modules/ui/images';

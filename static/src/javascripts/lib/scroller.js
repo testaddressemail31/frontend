@@ -12,7 +12,7 @@
 
 import easing from 'lib/easing';
 import bonzo from 'bonzo';
-import fastdom from 'fastdom';
+import fastdom from 'lib/fastdom-promise';
 
 const scrollTo = (
     offset: number,

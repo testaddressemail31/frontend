@@ -1,21 +1,10 @@
 // @flow
 import fastdom from 'fastdom';
+import fastdomPromised from 'fastdom/extensions/fastdom-promised';
 
-const promisify = fdaction =>
-    (fn: Function, ctx: Object) =>
-        new Promise((resolve, reject) =>
-            fdaction(
-                () => {
-                    try {
-                        resolve(fn.call(this));
-                    } catch (e) {
-                        reject(e);
-                    }
-                },
-                ctx
-            ));
+const promised = fastdom.extend(fastdomPromised);
 
 export default {
-    read: promisify(fastdom.read.bind(fastdom)),
-    write: promisify(fastdom.write.bind(fastdom)),
+    read: promised.measure.bind(promised),
+    write: promised.mutate.bind(promised),
 };
